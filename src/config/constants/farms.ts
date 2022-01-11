@@ -31,7 +31,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 252,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
-      97: '',
+      97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
     },
     token: serializedTokens.busd,
