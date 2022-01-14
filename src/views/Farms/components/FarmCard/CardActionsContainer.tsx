@@ -1,4 +1,4 @@
-import { Button, Flex, Text } from '@pancakeswap/uikit'
+import { Button, Flex, Text } from '@zoinks-swap/uikit'
 import BigNumber from 'bignumber.js'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from 'contexts/Localization'

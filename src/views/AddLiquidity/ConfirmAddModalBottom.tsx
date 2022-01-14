@@ -1,6 +1,6 @@
 import { Currency, CurrencyAmount, Fraction, Percent } from '@zoinks-swap/sdk'
 import React from 'react'
-import { Button, Text } from '@pancakeswap/uikit'
+import { Button, Text } from '@zoinks-swap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { RowBetween, RowFixed } from '../../components/Layout/Row'
 import { CurrencyLogo } from '../../components/Logo'

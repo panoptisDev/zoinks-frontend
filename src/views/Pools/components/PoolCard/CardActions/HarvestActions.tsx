@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, Heading, useModal, Skeleton } from '@pancakeswap/uikit'
+import { Flex, Text, Button, Heading, useModal, Skeleton } from '@zoinks-swap/uikit'
 import BigNumber from 'bignumber.js'
 import { Token } from '@zoinks-swap/sdk'
 import { useTranslation } from 'contexts/Localization'
