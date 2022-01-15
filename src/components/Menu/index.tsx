@@ -9,7 +9,6 @@ import { usePriceCakeBusd } from 'state/farms/hooks'
 import { usePhishingBannerManager } from 'state/user/hooks'
 import config from './config/config'
 import UserMenu from './UserMenu'
-import GlobalSettings from './GlobalSettings'
 import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
 
 const Menu = (props) => {
@@ -25,7 +24,6 @@ const Menu = (props) => {
   return (
     <UikitMenu
       userMenu={<UserMenu />}
-      globalMenu={<GlobalSettings />}
       banner={showPhishingWarningBanner && <PhishingWarningBanner />}
       isDark={isDark}
       toggleTheme={toggleTheme}
@@ -37,7 +35,6 @@ const Menu = (props) => {
       subLinks={activeMenuItem?.hideSubNav ? [] : activeMenuItem?.items}
       activeItem={activeMenuItem?.href}
       activeSubItem={activeSubMenuItem?.href}
-      buyCakeLabel={t('Buy CAKE')}
       {...props}
     />
   )

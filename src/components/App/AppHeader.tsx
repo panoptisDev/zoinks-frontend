@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Text, Flex, Heading, IconButton, ArrowBackIcon, NotificationDot } from '@zoinks-swap/uikit'
 import { Link } from 'react-router-dom'
 import { useExpertModeManager } from 'state/user/hooks'
-import GlobalSettings from 'components/Menu/GlobalSettings'
 import Transactions from './Transactions'
 import QuestionHelper from '../QuestionHelper'
 
@@ -46,14 +45,6 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
           </Flex>
         </Flex>
       </Flex>
-      {!noConfig && (
-        <Flex alignItems="center">
-          <NotificationDot show={expertMode}>
-            <GlobalSettings />
-          </NotificationDot>
-          <Transactions />
-        </Flex>
-      )}
     </AppHeaderContainer>
   )
 }

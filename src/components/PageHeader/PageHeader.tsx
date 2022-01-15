@@ -4,19 +4,15 @@ import { Box } from '@zoinks-swap/uikit'
 import Container from '../Layout/Container'
 import { PageHeaderProps } from './types'
 
-const Outer = styled(Box)<{ background?: string }>`
-  background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
-`
-
 const Inner = styled(Container)`
   padding-top: 32px;
   padding-bottom: 32px;
 `
 
-const PageHeader: React.FC<PageHeaderProps> = ({ background, children, ...props }) => (
-  <Outer background={background} {...props}>
+const PageHeader: React.FC<PageHeaderProps> = ({ children, ...props }) => (
+  <Box {...props}>
     <Inner>{children}</Inner>
-  </Outer>
+  </Box>
 )
 
 export default PageHeader

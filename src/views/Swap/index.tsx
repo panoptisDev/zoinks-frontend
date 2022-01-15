@@ -603,7 +603,7 @@ export default function Swap({ history }: RouteComponentProps) {
           </StyledSwapContainer>
           {isChartExpanded && (
             <Box display={['none', null, null, 'block']} width="100%" height="100%">
-              <Footer variant="side" />
+              <Footer/>
             </Box>
           )}
         </Flex>

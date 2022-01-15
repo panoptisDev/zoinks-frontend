@@ -6,7 +6,7 @@ import { getApy } from 'utils/compoundApyHelpers'
 
 const Footer = styled(Flex)`
   width: 100%;
-  background: ${({ theme }) => theme.colors.dropdown};
+  background: ${({ theme }) => theme.colors.backgroundAlt};
 `
 
 const BulletList = styled.ul`
