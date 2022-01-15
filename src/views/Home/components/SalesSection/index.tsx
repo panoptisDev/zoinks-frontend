@@ -1,29 +1,22 @@
 import React from 'react'
-import { Flex, Text, Button, Link } from '@zoinks-swap/uikit'
+import { Flex, Button, Heading } from '@zoinks-swap/uikit'
+import { useWeb3React } from '@web3-react/core'
 import { Link as RouterLink } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 import CompositeImage, { CompositeImageProps } from '../CompositeImage'
-import ColoredWordHeading from '../ColoredWordHeading'
-
-interface SalesSectionButton {
-  to: string
-  text: string
-  external: boolean
-}
 
 export interface SalesSectionProps {
   headingText: string
   bodyText: string
   reverse: boolean
-  primaryButton: SalesSectionButton
-  secondaryButton: SalesSectionButton
   images: CompositeImageProps
 }
 
 const SalesSection: React.FC<SalesSectionProps> = (props) => {
   const { t } = useTranslation()
-
-  const { headingText, bodyText, reverse, primaryButton, secondaryButton, images } = props
+  const { account } = useWeb3React()
+  const { headingText, bodyText, reverse, images } = props
 
   const headingTranslatedText = t(headingText)
   const bodyTranslatedText = t(bodyText)
@@ -33,50 +26,34 @@ const SalesSection: React.FC<SalesSectionProps> = (props) => {
       <Flex
         flexDirection={['column-reverse', null, null, reverse ? 'row-reverse' : 'row']}
         alignItems={['flex-end', null, null, 'center']}
-        justifyContent="center"
-      >
+        justifyContent="center">
         <Flex
           flexDirection="column"
           flex="1"
           ml={[null, null, null, reverse && '64px']}
           mr={[null, null, null, !reverse && '64px']}
-          alignSelf={['flex-start', null, null, 'center']}
-        >
-          <ColoredWordHeading text={headingTranslatedText} />
-          <Text color="textSubtle" mb="24px">
+          alignSelf={['flex-start', null, null, 'center']}>
+          <Heading as="h1" scale="xxl" color="overlay" mb="24px">
+              {headingTranslatedText}
+            </Heading>
+          <Heading scale="md" color="overlay">
             {bodyTranslatedText}
-          </Text>
-          <Flex>
-            <Button mr="16px">
-              {primaryButton.external ? (
-                <Link external href={primaryButton.to}>
-                  <Text color="card" bold fontSize="16px">
-                    {t(primaryButton.text)}
-                  </Text>
-                </Link>
-              ) : (
-                <RouterLink to={primaryButton.to}>
-                  <Text color="card" bold fontSize="16px">
-                    {t(primaryButton.text)}
-                  </Text>
-                </RouterLink>
-              )}
-            </Button>
-            {secondaryButton.external ? (
-              <Link external href={secondaryButton.to}>
-                {t(secondaryButton.text)}
-              </Link>
-            ) : (
-              <RouterLink to={secondaryButton.to}>{t(secondaryButton.text)}</RouterLink>
-            )}
+          </Heading>
+          <Flex mt="8px">
+            {!account && <ConnectWalletButton mr="8px" />}
+            <RouterLink to="/swap">
+              <Button mr="8px" color="primary">{t('Trade Now')}</Button>
+            </RouterLink>
+            <RouterLink to="/farms">
+              <Button color="primary">{t('Earn')}</Button>
+            </RouterLink>
           </Flex>
         </Flex>
         <Flex
           height={['192px', null, null, '100%']}
           width={['192px', null, null, '100%']}
           flex={[null, null, null, '1']}
-          mb={['24px', null, null, '0']}
-        >
+          mb={['24px', null, null, '0']}>
           <CompositeImage {...images} />
         </Flex>
       </Flex>

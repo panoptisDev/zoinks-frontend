@@ -23,19 +23,14 @@ import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
-import Select, { OptionProps } from 'components/Select/Select'
 import { DeserializedPool } from 'state/types'
 import { useUserPoolStakedOnly, useUserPoolsViewMode } from 'state/user/hooks'
 import { usePoolsWithVault } from 'views/Home/hooks/useGetTopPoolsByApr'
-import { ViewMode } from 'state/user/actions'
 import { BIG_ZERO } from 'utils/bigNumber'
 import Loading from 'components/Loading'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
-import BountyCard from './components/BountyCard'
-import PoolsTable from './components/PoolsTable/PoolsTable'
 import { getCakeVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
@@ -57,30 +52,6 @@ const PoolControls = styled.div`
     flex-wrap: wrap;
     padding: 16px 32px;
     margin-bottom: 0;
-  }
-`
-
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
-`
-
-const LabelWrapper = styled.div`
-  > ${Text} {
-    font-size: 12px;
-  }
-`
-
-const ControlStretch = styled(Flex)`
-  > div {
-    flex: 1;
   }
 `
 
@@ -150,14 +121,6 @@ const Pools: React.FC = () => {
   }, [isIntersecting])
 
   const showFinishedPools = location.pathname.includes('history')
-
-  const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value)
-  }
-
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
-  }
 
   const sortPools = (poolsToSort: DeserializedPool[]) => {
     switch (sortOption) {
@@ -247,8 +210,6 @@ const Pools: React.FC = () => {
     </CardLayout>
   )
 
-  const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
-
   return (
     <>
       <PageHeader>
@@ -275,45 +236,7 @@ const Pools: React.FC = () => {
             stakedOnly={stakedOnly}
             setStakedOnly={setStakedOnly}
             hasStakeInFinishedPools={hasStakeInFinishedPools}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
           />
-          <FilterContainer>
-            <LabelWrapper>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Sort by')}
-              </Text>
-              <ControlStretch>
-                <Select
-                  options={[
-                    {
-                      label: t('Hot'),
-                      value: 'hot',
-                    },
-                    {
-                      label: t('APR'),
-                      value: 'apr',
-                    },
-                    {
-                      label: t('Earned'),
-                      value: 'earned',
-                    },
-                    {
-                      label: t('Total staked'),
-                      value: 'totalStaked',
-                    },
-                  ]}
-                  onOptionChange={handleSortOptionChange}
-                />
-              </ControlStretch>
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Search')}
-              </Text>
-              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-            </LabelWrapper>
-          </FilterContainer>
         </PoolControls>
         {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
@@ -325,7 +248,7 @@ const Pools: React.FC = () => {
             <Loading />
           </Flex>
         )}
-        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+        {cardLayout}
         <div ref={observerRef} />
       </Page>
     </>

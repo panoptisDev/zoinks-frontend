@@ -13,15 +13,24 @@ const StyledNotFound = styled.div`
   justify-content: center;
 `
 
+const StyledLogoIcon = styled(LogoIcon)`
+  .st0 {
+    fill: #0FA36F;
+    stroke: #000000;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+  }
+`
+
 const NotFound = () => {
   const { t } = useTranslation()
 
   return (
     <Page>
       <StyledNotFound>
-        <LogoIcon width="64px" mb="8px" />
-        <Heading scale="xxl">404</Heading>
-        <Text mb="16px">{t('Oops, page not found.')}</Text>
+        <StyledLogoIcon width="64px" mb="8px" />
+        <Heading scale="xxl" color='primary'>404</Heading>
+        <Text mb="16px" color='black'>{t('Oops, page not found.')}</Text>
         <Button as={Link} to="/" scale="sm">
           {t('Back Home')}
         </Button>

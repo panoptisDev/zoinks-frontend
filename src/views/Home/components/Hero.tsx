@@ -127,11 +127,7 @@ const Hero = () => {
           position="relative"
         >
           <BunnyWrapper>
-            <picture>
-              <source type="image/webp" srcSet={getSrcSet(imagePath, imageSrc, '.webp')} />
-              <source type="image/png" srcSet={getSrcSet(imagePath, imageSrc)} />
-              <img src={`${imagePath}${imageSrc}.png`} alt={t('Lunar bunny')} />
-            </picture>
+            <img src={`${imagePath}${imageSrc}.png`} srcSet={getSrcSet(imagePath, imageSrc)} alt={t('Lunar bunny')} />
           </BunnyWrapper>
           <StarsWrapper>
             <CompositeImage {...starsImage} />

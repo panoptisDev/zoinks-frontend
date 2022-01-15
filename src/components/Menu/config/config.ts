@@ -1,4 +1,4 @@
-import { MenuItemsType } from '@zoinks-swap/uikit'
+import { MenuItemsType, DropdownMenuItemType } from '@zoinks-swap/uikit'
 import { ContextApi } from 'contexts/Localization/types'
 // import { nftsBaseUrl } from 'views/Nft/market/constants'
 
@@ -35,6 +35,19 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         href: '/pools',
       },
     ],
+  },
+  {
+    label: '',
+    href: '/more',
+    icon: 'More',
+    hideSubNav: true,
+    items: [
+      {
+        label: t('Github'),
+        href: 'https://github.com/zoinksDAO',
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+    ]
   },
   // {
   //   label: t('Win'),
