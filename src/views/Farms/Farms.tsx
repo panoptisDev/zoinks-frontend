@@ -385,7 +385,7 @@ const Farms: React.FC = () => {
                 onChange={() => setStakedOnly(!stakedOnly)}
                 scale="sm"
               />
-              <Text> {t('Staked only')}</Text>
+              <Text color="overlay"> {t('Staked only')}</Text>
             </ToggleWrapper>
             <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
           </ViewControls>

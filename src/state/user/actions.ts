@@ -60,8 +60,6 @@ export const updateGasPrice = createAction<{ gasPrice: string }>('user/updateGas
 export const addWatchlistToken = createAction<{ address: string }>('user/addWatchlistToken')
 export const addWatchlistPool = createAction<{ address: string }>('user/addWatchlistPool')
 
-export const hidePhishingWarningBanner = createAction<void>('user/hidePhishingWarningBanner')
-
 export const setIsExchangeChartDisplayed = createAction<boolean>('user/toggleIsExchangeChartDisplayed')
 export const setChartViewMode = createAction<ChartViewMode>('user/setChartViewMode')
 export const setSubgraphHealthIndicatorDisplayed = createAction<boolean>('user/setSubgraphHealthIndicatorDisplayed')

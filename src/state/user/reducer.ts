@@ -28,7 +28,6 @@ import {
   updateUserPredictionChartDisclaimerShow,
   updateUserUsernameVisibility,
   updateUserExpertModeAcknowledgementShow,
-  hidePhishingWarningBanner,
   setIsExchangeChartDisplayed,
   setChartViewMode,
   ChartViewMode,
@@ -241,9 +240,6 @@ export default createReducer(initialState, (builder) =>
         const newPools = state.watchlistPools.filter((x) => x !== address)
         state.watchlistPools = newPools
       }
-    })
-    .addCase(hidePhishingWarningBanner, (state) => {
-      state.showPhishingWarningBanner = false
     })
     .addCase(setIsExchangeChartDisplayed, (state, { payload }) => {
       state.isExchangeChartDisplayed = payload

@@ -3,10 +3,8 @@ import { useLocation } from 'react-router'
 import { Menu as UikitMenu } from '@zoinks-swap/uikit'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
-import PhishingWarningBanner from 'components/PhishingWarningBanner'
 import useTheme from 'hooks/useTheme'
 import { usePriceCakeBusd } from 'state/farms/hooks'
-import { usePhishingBannerManager } from 'state/user/hooks'
 import config from './config/config'
 import UserMenu from './UserMenu'
 import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
@@ -16,7 +14,6 @@ const Menu = (props) => {
   const cakePriceUsd = usePriceCakeBusd()
   const { currentLanguage, setLanguage, t } = useTranslation()
   const { pathname } = useLocation()
-  const [showPhishingWarningBanner] = usePhishingBannerManager()
 
   const activeMenuItem = getActiveMenuItem({ menuConfig: config(t), pathname })
   const activeSubMenuItem = getActiveSubMenuItem({ menuItem: activeMenuItem, pathname })
@@ -24,7 +21,6 @@ const Menu = (props) => {
   return (
     <UikitMenu
       userMenu={<UserMenu />}
-      banner={showPhishingWarningBanner && <PhishingWarningBanner />}
       isDark={isDark}
       toggleTheme={toggleTheme}
       currentLang={currentLanguage.code}
