@@ -2,9 +2,9 @@ import { CardHeader, Flex, Heading, Text } from '@zoinks-swap/uikit'
 import React from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
-  background: ${({ isFinished, background, theme }) =>
-    isFinished ? theme.colors.backgroundDisabled : theme.colors.gradients[background]};
+const Wrapper = styled(CardHeader)<{ isFinished?: boolean }>`
+  background: ${({ isFinished, theme }) =>
+    isFinished ? theme.colors.backgroundAlt : theme.colors.backgroundAlt};
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
 `
 
@@ -12,10 +12,9 @@ const PoolCardHeader: React.FC<{
   isFinished?: boolean
   isStaking?: boolean
 }> = ({ isFinished = false, isStaking = false, children }) => {
-  const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   return (
-    <Wrapper isFinished={isFinished} background={background}>
+    <Wrapper isFinished={isFinished}>
       <Flex alignItems="center" justifyContent="space-between">
         {children}
       </Flex>
