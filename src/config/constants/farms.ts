@@ -17,40 +17,40 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.syrup,
     quoteToken: serializedTokens.wbnb,
   },
-  {
-    pid: 1,
-    lpSymbol: 'CAKE-BNB LP',
-    lpAddresses: {
-      97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
-      56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
-    },
-    token: serializedTokens.cake,
-    quoteToken: serializedTokens.wbnb,
-  },
-  {
-    pid: 2,
-    lpSymbol: 'BUSD-BNB LP',
-    lpAddresses: {
-      97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
-      56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
-    },
-    token: serializedTokens.busd,
-    quoteToken: serializedTokens.wbnb,
-  },
+  // {
+  //   pid: 1,
+  //   lpSymbol: 'CAKE-BNB LP',
+  //   lpAddresses: {
+  //     97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
+  //     56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
+  //   },
+  //   token: serializedTokens.cake,
+  //   quoteToken: serializedTokens.wbnb,
+  // },
+  // {
+  //   pid: 2,
+  //   lpSymbol: 'BUSD-BNB LP',
+  //   lpAddresses: {
+  //     97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
+  //     56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+  //   },
+  //   token: serializedTokens.busd,
+  //   quoteToken: serializedTokens.wbnb,
+  // },
   /**
    * V3 by order of release (some may be out of PID order due to multiplier boost)
    */
-  // {
-  //   pid: 497,
-  //   lpSymbol: 'AOG-BUSD LP',
-  //   lpAddresses: {
-  //     97: '',
-  //     56: '0x88c9bf5E334e2591C6A866D5E20683E31226Be3d',
-  //   },
-  //   token: serializedTokens.aog,
-  //   quoteToken: serializedTokens.busd,
-  //   isCommunity: true,
-  // },
+  {
+    pid: 1,
+    lpSymbol: 'Zoinks-BUSD LP',
+    lpAddresses: {
+      97: '0x74e07A14301cD17fAc31503c303ac63A804ecE77',
+      56: '',
+    },
+    token: serializedTokens.cake,
+    quoteToken: serializedTokens.busd,
+    isCommunity: true,
+  },
   // {
   //   pid: 498,
   //   lpSymbol: '8PAY-BUSD LP',

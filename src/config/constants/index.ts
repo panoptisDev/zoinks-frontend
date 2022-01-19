@@ -2,7 +2,7 @@ import { ChainId, JSBI, Percent, Token } from '@zoinks-swap/sdk'
 import { mainnetTokens, testnetTokens } from './tokens'
 
 // export const ROUTER_ADDRESS = '0x10ED43C718714eb63d5aA57B78B54704E256024E' // mainnet
-export const ROUTER_ADDRESS = '0xD99D1c33F9fC3444f8101754aBC46c52416550D1' // testnet
+export const ROUTER_ADDRESS = '0x3427d24FbBb7F3d68bdAECc9B60C05d75880e9D9' // testnet
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -59,6 +59,9 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [mainnetTokens.busd, mainnetTokens.usdt],
     [mainnetTokens.dai, mainnetTokens.usdt],
   ],
+  [ChainId.TESTNET]: [
+    [testnetTokens.cake, testnetTokens.busd],
+  ]
 }
 
 export const NetworkContextName = 'NETWORK'

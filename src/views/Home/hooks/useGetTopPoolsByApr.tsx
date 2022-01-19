@@ -15,33 +15,34 @@ enum FetchStatus {
 }
 
 export function usePoolsWithVault() {
-  const { pools: poolsWithoutAutoVault } = usePools()
-  const cakeVault = useCakeVault()
-  const ifoPool = useIfoPoolVault()
-  const { hasEndBlockOver } = useIfoPoolCreditBlock()
-  const pools = useMemo(() => {
-    const activePools = poolsWithoutAutoVault.filter((pool) => !pool.isFinished)
-    const cakePool = activePools.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, vaultKey: VaultKey.CakeVault }
-    const ifoPoolVault = { ...cakePool, vaultKey: VaultKey.IfoPool }
-    const cakeAutoVaultWithApr = {
-      ...cakeAutoVault,
-      apr: getAprData(cakeAutoVault, cakeVault.fees.performanceFeeAsDecimal).apr,
-      rawApr: cakePool.apr,
-    }
-    const ifoPoolWithApr = {
-      ...ifoPoolVault,
-      apr: getAprData(ifoPoolVault, ifoPool.fees.performanceFeeAsDecimal).apr,
-      rawApr: cakePool.apr,
-      isFinished: hasEndBlockOver,
-    }
-    return [ifoPoolWithApr, cakeAutoVaultWithApr, ...poolsWithoutAutoVault]
-  }, [
-    poolsWithoutAutoVault,
-    cakeVault.fees.performanceFeeAsDecimal,
-    ifoPool.fees.performanceFeeAsDecimal,
-    hasEndBlockOver,
-  ])
+  // const { pools: poolsWithoutAutoVault } = usePools()
+  const { pools } = usePools()
+  // const cakeVault = useCakeVault()
+  // const ifoPool = useIfoPoolVault()
+  // const { hasEndBlockOver } = useIfoPoolCreditBlock()
+  // const pools = useMemo(() => {
+  //   const activePools = poolsWithoutAutoVault.filter((pool) => !pool.isFinished)
+  //   const cakePool = activePools.find((pool) => pool.sousId === 0)
+  //   const cakeAutoVault = { ...cakePool, vaultKey: VaultKey.CakeVault }
+  //   const ifoPoolVault = { ...cakePool, vaultKey: VaultKey.IfoPool }
+  //   const cakeAutoVaultWithApr = {
+  //     ...cakeAutoVault,
+  //     apr: getAprData(cakeAutoVault, cakeVault.fees.performanceFeeAsDecimal).apr,
+  //     rawApr: cakePool.apr,
+  //   }
+  //   const ifoPoolWithApr = {
+  //     ...ifoPoolVault,
+  //     apr: getAprData(ifoPoolVault, ifoPool.fees.performanceFeeAsDecimal).apr,
+  //     rawApr: cakePool.apr,
+  //     isFinished: hasEndBlockOver,
+  //   }
+  //   return [ifoPoolWithApr, cakeAutoVaultWithApr, ...poolsWithoutAutoVault]
+  // }, [
+  //   poolsWithoutAutoVault,
+  //   cakeVault.fees.performanceFeeAsDecimal,
+  //   ifoPool.fees.performanceFeeAsDecimal,
+  //   hasEndBlockOver,
+  // ])
 
   return pools
 }
