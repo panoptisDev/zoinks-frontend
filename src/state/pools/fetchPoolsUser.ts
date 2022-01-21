@@ -11,7 +11,7 @@ import BigNumber from 'bignumber.js'
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
 const nonBnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol === 'BNB')
-const nonMasterPools = poolsConfig.filter((pool) => pool.sousId !== 0)
+const nonMasterPools = poolsConfig.filter((pool) => pool.sousId >= 0)
 const masterChefContract = getMasterchefContract()
 
 export const fetchPoolsAllowance = async (account) => {
@@ -67,9 +67,9 @@ export const fetchUserStakeBalances = async (account) => {
   )
 
   // Cake / Cake pool
-  const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
+  // const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
 
-  return { ...stakedBalances, 0: new BigNumber(masterPoolAmount.toString()).toJSON() }
+  return { ...stakedBalances/*, 0: new BigNumber(masterPoolAmount.toString()).toJSON()*/ }
 }
 
 export const fetchUserPendingRewards = async (account) => {
@@ -88,7 +88,7 @@ export const fetchUserPendingRewards = async (account) => {
   )
 
   // Cake / Cake pool
-  const pendingReward = await masterChefContract.pendingCake('0', account)
+  // const pendingReward = await masterChefContract.pendingCake('0', account)
 
-  return { ...pendingRewards, 0: new BigNumber(pendingReward.toString()).toJSON() }
+  return { ...pendingRewards/*, 0: new BigNumber(pendingReward.toString()).toJSON()*/ }
 }

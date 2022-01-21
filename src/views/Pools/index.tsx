@@ -75,6 +75,7 @@ const Pools: React.FC = () => {
   }, BIG_ZERO)
 
   const pools = usePoolsWithVault()
+  console.log(pools);
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
   const [finishedPools, openPools] = useMemo(
@@ -151,23 +152,24 @@ const Pools: React.FC = () => {
           poolsToSort,
           (pool: DeserializedPool) => {
             let totalStaked = Number.NaN
-            if (pool.vaultKey) {
-              if (pool.stakingTokenPrice && vaultPools[pool.vaultKey].totalCakeInVault.isFinite()) {
-                totalStaked =
-                  +formatUnits(
-                    ethers.BigNumber.from(vaultPools[pool.vaultKey].totalCakeInVault.toString()),
-                    pool.stakingToken.decimals,
-                  ) * pool.stakingTokenPrice
-              }
-            } else if (pool.sousId === 0) {
-              if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice && cakeInVaults.isFinite()) {
-                const manualCakeTotalMinusAutoVault = ethers.BigNumber.from(pool.totalStaked.toString()).sub(
-                  cakeInVaults.toString(),
-                )
-                totalStaked =
-                  +formatUnits(manualCakeTotalMinusAutoVault, pool.stakingToken.decimals) * pool.stakingTokenPrice
-              }
-            } else if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice) {
+            // if (pool.vaultKey) {
+            //   if (pool.stakingTokenPrice && vaultPools[pool.vaultKey].totalCakeInVault.isFinite()) {
+            //     totalStaked =
+            //       +formatUnits(
+            //         ethers.BigNumber.from(vaultPools[pool.vaultKey].totalCakeInVault.toString()),
+            //         pool.stakingToken.decimals,
+            //       ) * pool.stakingTokenPrice
+            //   }
+            // } else if (pool.sousId === 0) {
+            //   if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice && cakeInVaults.isFinite()) {
+            //     const manualCakeTotalMinusAutoVault = ethers.BigNumber.from(pool.totalStaked.toString()).sub(
+            //       cakeInVaults.toString(),
+            //     )
+            //     totalStaked =
+            //       +formatUnits(manualCakeTotalMinusAutoVault, pool.stakingToken.decimals) * pool.stakingTokenPrice
+            //   }
+            // } else 
+            if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice) {
               totalStaked =
                 +formatUnits(ethers.BigNumber.from(pool.totalStaked.toString()), pool.stakingToken.decimals) *
                 pool.stakingTokenPrice
