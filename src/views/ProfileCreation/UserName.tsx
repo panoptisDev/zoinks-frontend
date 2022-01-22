@@ -72,7 +72,7 @@ const UserName: React.FC = () => {
   const hasMinimumCakeRequired = fetchStatus === FetchStatus.SUCCESS && cakeBalance.gte(REGISTER_COST)
   const [onPresentConfirmProfileCreation] = useModal(
     <ConfirmProfileCreationModal
-      userName={userName}
+      /* userName={userName} */
       selectedNft={selectedNft}
       account={account}
       teamId={teamId}

@@ -82,7 +82,7 @@ const CtaButtons: React.FC<CtaButtonsProps> = ({
             theme={theme}
             saleStatus={saleStatus}
             numberTicketsOfUser={numberTicketsOfUser}
-            numberTokensOfUser={numberTokensOfUser}
+            /* numberTokensOfUser={numberTokensOfUser} */
             ticketsOfUser={ticketsOfUser}
           />
         )}
@@ -91,7 +91,7 @@ const CtaButtons: React.FC<CtaButtonsProps> = ({
             t={t}
             account={account}
             saleStatus={saleStatus}
-            userStatus={userStatus}
+            /* userStatus={userStatus} */
             maxSupply={maxSupply}
             totalSupplyMinted={totalSupplyMinted}
             numberTokensOfUser={numberTokensOfUser}

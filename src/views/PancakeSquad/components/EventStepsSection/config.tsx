@@ -127,7 +127,7 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
               theme={theme}
               saleStatus={saleStatus}
               numberTicketsOfUser={numberTicketsOfUser}
-              numberTokensOfUser={numberTokensOfUser}
+              /* numberTokensOfUser={numberTokensOfUser} */
               ticketsOfUser={ticketsOfUser}
             />
           )}
@@ -154,7 +154,7 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
             <EndEventButtons
               t={t}
               saleStatus={saleStatus}
-              userStatus={userStatus}
+              /* userStatus={userStatus} */
               maxSupply={maxSupply}
               totalSupplyMinted={totalSupplyMinted}
               numberTokensOfUser={numberTokensOfUser}

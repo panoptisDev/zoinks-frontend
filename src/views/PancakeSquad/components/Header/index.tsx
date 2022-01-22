@@ -112,7 +112,7 @@ const PancakeSquadHeader: React.FC<PancakeSquadHeaderType> = ({
                     <PreEventText t={t} userStatus={userStatus} saleStatus={saleStatus} />
                     <SaleProgress
                       t={t}
-                      userStatus={userStatus}
+                      /* userStatus={userStatus} */
                       saleStatus={saleStatus}
                       totalTicketsDistributed={totalTicketsDistributed}
                       maxSupply={maxSupply}
