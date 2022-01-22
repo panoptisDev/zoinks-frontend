@@ -540,7 +540,7 @@
   "This pool’s rewards aren’t compounded automatically, so we show APR": "Винагороди цього пулу не обчислюються автоматично, тому ми відображаємо РВС.",
   "Auto": "Авто",
   "Manual": "Вручну",
-  "Earn CAKE, stake CAKE": "Заробляйте CAKE, вносьте CAKE",
+  "Earn Zoinks, stake Zoinks": "Заробляйте Zoinks, вносьте Zoinks",
   "This bounty is given as a reward for providing a service to other users.": "Премія – це винагорода за надання послуг іншим користувачам.",
   "Whenever you successfully claim the bounty, you’re also helping out by activating the Auto CAKE Pool’s compounding function for everyone.": "Коли ви успішно отримуєте премію, ви також допомагаєте всім в активації домішування автоматичного пулу CAKE.",
   "Auto-Compound Bounty: %fee%% of all Auto CAKE pool users pending yield": "Премія за автодомішування: %fee%% від очікуваної виручки всіх користувачів автоматичного пулу CAKE",
