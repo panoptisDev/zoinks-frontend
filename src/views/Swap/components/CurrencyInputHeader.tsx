@@ -17,7 +17,7 @@ import { useExpertModeManager } from 'state/user/hooks'
 interface Props {
   title: string
   subtitle: string
-  noConfig?: boolean
+  // noConfig?: boolean
   setIsChartDisplayed?: React.Dispatch<React.SetStateAction<boolean>>
   isChartDisplayed?: boolean
 }

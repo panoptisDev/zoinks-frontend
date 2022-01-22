@@ -15,7 +15,7 @@ import { REGISTER_COST } from './config'
 import { State } from './contexts/types'
 
 interface Props {
-  userName: string
+  // userName: string
   selectedNft: State['selectedNft']
   account: string
   teamId: number

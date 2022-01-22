@@ -16,7 +16,7 @@ type PreEventProps = {
   theme: DefaultTheme
   saleStatus: SaleStatusEnum
   numberTicketsOfUser: number
-  numberTokensOfUser: number
+  // numberTokensOfUser: number
   ticketsOfUser: BigNumber[]
 }
 

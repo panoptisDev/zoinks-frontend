@@ -8,7 +8,7 @@ type EndEventProps = {
   t: ContextApi['t']
   account: string
   saleStatus: SaleStatusEnum
-  userStatus: UserStatusEnum
+  // userStatus: UserStatusEnum
   maxSupply: number
   totalSupplyMinted: number
   numberTokensOfUser: number

@@ -6,7 +6,7 @@ import { SaleStatusEnum, UserStatusEnum } from '../../types'
 type PreEventProps = {
   t: ContextApi['t']
   saleStatus: SaleStatusEnum
-  userStatus: UserStatusEnum
+  // userStatus: UserStatusEnum
   totalTicketsDistributed: number
   maxSupply: number
   totalSupplyMinted: number
