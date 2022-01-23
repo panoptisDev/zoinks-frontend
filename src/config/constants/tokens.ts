@@ -1944,7 +1944,7 @@ export const testnetTokens = defineTokens({
     18,
     'ZOINKS',
     'ZoinksSwap Token',
-    'https://pancakeswap.finance/',
+    'https://zoinks.fi/',
   ),
   busd: new Token(
     TESTNET,
