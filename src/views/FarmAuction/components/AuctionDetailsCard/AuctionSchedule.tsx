@@ -14,7 +14,7 @@ const ScheduleInner = styled(Flex)`
 
 interface ScheduleProps {
   auction: Auction
-  showForClosedAuction?: boolean
+  // showForClosedAuction?: boolean
 }
 
 const AuctionSchedule: React.FC<ScheduleProps> = ({ auction }) => {

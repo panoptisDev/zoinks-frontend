@@ -54,7 +54,9 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
     // Add price helper farms
     const farmsWithPriceHelpers = farmsToFetch.concat(priceHelperLpsConfig)
 
+    console.log(farmsWithPriceHelpers);
     const farms = await fetchFarms(farmsWithPriceHelpers)
+    console.log(farms);
     const farmsWithPrices = await fetchFarmsPrices(farms)
 
     // Filter out price helper LP config farms

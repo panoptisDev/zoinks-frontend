@@ -127,6 +127,7 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
               theme={theme}
               saleStatus={saleStatus}
               numberTicketsOfUser={numberTicketsOfUser}
+              // @ts-ignore
               numberTokensOfUser={numberTokensOfUser}
               ticketsOfUser={ticketsOfUser}
             />
@@ -154,6 +155,7 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
             <EndEventButtons
               t={t}
               saleStatus={saleStatus}
+              // @ts-ignore
               userStatus={userStatus}
               maxSupply={maxSupply}
               totalSupplyMinted={totalSupplyMinted}

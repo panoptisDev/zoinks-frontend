@@ -77,14 +77,18 @@ const ProfileHeader: React.FC<HeaderProps> = ({
         // TODO: Share functionality once user profiles routed by ID
         <Flex display="inline-flex">
           {accountPath && (
-            <StyledIconButton
-              target="_blank"
-              as="a"
-              href={getBscScanLink(accountPath, 'address')}
-              alt={t('View BscScan for user address')}
-            >
-              <BscScanIcon width="20px" color="primary" />
-            </StyledIconButton>
+             <IconButton
+             as="a"
+             target="_blank"
+             style={{
+               width: 'fit-content',
+             }}
+             href={getBscScanLink(accountPath, 'address') || ''}
+             // @ts-ignore
+             alt={t('View BscScan for user address')}
+           >
+             <BscScanIcon width="20px" color="primary" />
+           </IconButton>
           )}
         </Flex>
       )

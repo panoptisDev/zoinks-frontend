@@ -112,6 +112,7 @@ const PancakeSquadHeader: React.FC<PancakeSquadHeaderType> = ({
                     <PreEventText t={t} userStatus={userStatus} saleStatus={saleStatus} />
                     <SaleProgress
                       t={t}
+                      // @ts-ignore
                       userStatus={userStatus}
                       saleStatus={saleStatus}
                       totalTicketsDistributed={totalTicketsDistributed}

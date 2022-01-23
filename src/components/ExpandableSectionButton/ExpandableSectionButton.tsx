@@ -13,13 +13,12 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
   svg {
     fill: ${({ theme }) => theme.colors.primary};
   }
 `
 
-const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded }) => {
+const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded = false }) => {
   const { t } = useTranslation()
 
   return (
@@ -30,10 +29,6 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
       {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
     </Wrapper>
   )
-}
-
-ExpandableSectionButton.defaultProps = {
-  expanded: false,
 }
 
 export default ExpandableSectionButton

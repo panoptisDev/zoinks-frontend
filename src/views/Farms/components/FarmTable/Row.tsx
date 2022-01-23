@@ -88,6 +88,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   const isSmallerScreen = !isDesktop
   const tableSchema = isSmallerScreen ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
+  const { apr, farm, earned } = props;
 
   const handleRenderRow = () => {
     if (!isMobile) {
@@ -115,7 +116,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout label={t('APR')}>
-                        <Apr {...props.apr} hideButton={isSmallerScreen} />
+                        <Apr {...apr} hideButton={isSmallerScreen} />
                       </CellLayout>
                     </CellInner>
                   </td>
@@ -124,9 +125,9 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout label={t(tableSchema[columnIndex].label)}>
+                      {/* <CellLayout label={t(tableSchema[columnIndex].label)}>
                         {React.createElement(cells[key], { ...props[key], userDataReady })}
-                      </CellLayout>
+                      </CellLayout> */}
                     </CellInner>
                   </td>
                 )
@@ -142,19 +143,19 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
           <tr>
             <FarmMobileCell>
               <CellLayout>
-                <Farm {...props.farm} />
+                <Farm {...farm} />
               </CellLayout>
             </FarmMobileCell>
           </tr>
           <tr>
             <EarnedMobileCell>
               <CellLayout label={t('Earned')}>
-                <Earned {...props.earned} userDataReady={userDataReady} />
+                <Earned {...earned} userDataReady={userDataReady} />
               </CellLayout>
             </EarnedMobileCell>
             <AprMobileCell>
               <CellLayout label={t('APR')}>
-                <Apr {...props.apr} hideButton />
+                <Apr {...apr} hideButton />
               </CellLayout>
             </AprMobileCell>
           </tr>

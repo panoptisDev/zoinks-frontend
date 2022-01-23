@@ -41,18 +41,20 @@ const AprWrapper = styled.div`
   text-align: left;
 `
 
-const Apr: React.FC<AprProps> = ({
-  value,
-  pid,
-  lpLabel,
-  lpSymbol,
-  multiplier,
-  tokenAddress,
-  quoteTokenAddress,
-  cakePrice,
-  originalValue,
-  hideButton = false,
-}) => {
+const Apr: React.FC<AprProps | any> = (apr) => {
+  const {
+    value,
+    pid,
+    lpLabel,
+    lpSymbol,
+    multiplier,
+    tokenAddress,
+    quoteTokenAddress,
+    cakePrice,
+    originalValue,
+    hideButton = false,
+  } = apr;
+  
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAddress, tokenAddress })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 

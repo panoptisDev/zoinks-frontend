@@ -70,12 +70,11 @@ const Pools: React.FC = () => {
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
   const vaultPools = useVaultPools()
-  const cakeInVaults = Object.values(vaultPools).reduce((total, vault) => {
-    return total.plus(vault.totalCakeInVault)
-  }, BIG_ZERO)
+  // const cakeInVaults = Object.values(vaultPools).reduce((total, vault) => {
+  //   return total.plus(vault.totalCakeInVault)
+  // }, BIG_ZERO)
 
   const pools = usePoolsWithVault()
-  console.log(pools);
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
   const [finishedPools, openPools] = useMemo(
