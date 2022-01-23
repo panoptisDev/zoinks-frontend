@@ -69,7 +69,7 @@ const FarmMobileCell = styled.td`
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
-  const { details, userDataReady } = props
+  const { apr, farm, earned, details, multiplier, liquidity, userDataReady } = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
   const shouldRenderChild = useDelayedUnmount(actionPanelExpanded, 300)
@@ -88,7 +88,6 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   const isSmallerScreen = !isDesktop
   const tableSchema = isSmallerScreen ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
-  const { apr, farm, earned } = props;
 
   const handleRenderRow = () => {
     if (!isMobile) {
@@ -96,6 +95,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
         <StyledTr onClick={toggleActionPanel}>
           {Object.keys(props).map((key) => {
             const columnIndex = columnNames.indexOf(key)
+            let temp;
             if (columnIndex === -1) {
               return null
             }
@@ -122,12 +122,16 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   </td>
                 )
               default:
+                if (key === 'earned') temp = {...earned};
+                if (key === 'farm') temp = {...farm};
+                if (key === 'multiplier') temp = {...multiplier};
+                if (key === 'liquidity') temp = {...liquidity};
                 return (
                   <td key={key}>
                     <CellInner>
-                      {/* <CellLayout label={t(tableSchema[columnIndex].label)}>
-                        {React.createElement(cells[key], { ...props[key], userDataReady })}
-                      </CellLayout> */}
+                      <CellLayout label={t(tableSchema[columnIndex].label)}>
+                        {React.createElement(cells[key], { ...temp, userDataReady })}
+                      </CellLayout>
                     </CellInner>
                   </td>
                 )
