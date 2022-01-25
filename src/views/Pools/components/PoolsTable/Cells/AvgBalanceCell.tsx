@@ -44,7 +44,7 @@ const AvgBalanceCell: React.FC<AvgBalanceCellProps> = ({ account }) => {
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t(
-      'Max CAKE entry for both IFO sale is capped by average pool balance in this pool. This is calculated by the average block balance in the IFO pool in the past blocks prior to cut-off block.',
+      'Max Zoinks entry for both IFO sale is capped by average pool balance in this pool. This is calculated by the average block balance in the IFO pool in the past blocks prior to cut-off block.',
     ),
     { placement: 'bottom' },
   )

@@ -39,13 +39,13 @@ const EditNumbersModal: React.FC<{
     <StyledModal
       title={t('Edit numbers')}
       onDismiss={onDismiss}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.backgroundAlt}
       onBack={onDismiss}
     >
       <ScrollableContainer>
         <Flex justifyContent="space-between" mb="16px">
           <Text color="textSubtle">{t('Total cost')}:</Text>
-          <Text>~{totalCost} CAKE</Text>
+          <Text>~{totalCost} Zoinks</Text>
         </Flex>
         <Text fontSize="12px" color="textSubtle" mb="16px">
           {t(

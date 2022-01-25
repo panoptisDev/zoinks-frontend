@@ -146,7 +146,7 @@ const BuyModal: React.FC<BuyModalProps> = ({ nftToBuy, onDismiss }) => {
       stage={stage}
       onDismiss={onDismiss}
       onBack={showBackButton ? goBack : null}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.backgroundAlt}
     >
       {stage === BuyingStage.REVIEW && (
         <ReviewStage

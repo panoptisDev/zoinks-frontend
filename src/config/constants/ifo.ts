@@ -3,7 +3,7 @@ import tokens from './tokens'
 import farms from './farms'
 import { Ifo } from './types'
 
-export const cakeBnbLpToken = new Token(56, '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0', 18, 'CAKE-BNB LP')
+export const cakeBnbLpToken = new Token(56, '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0', 18, 'Zoinks-BNB LP')
 
 const ifos: Ifo[] = [
   {

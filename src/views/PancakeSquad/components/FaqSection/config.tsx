@@ -37,7 +37,7 @@ const config = ({ t }: FAQsType) => [
   },
   {
     title: t('Where do the fees go?'),
-    description: [t('100% of CAKE spent on Zoinks Squad NFTs will be burned as part of our weekly CAKE burn.')],
+    description: [t('100% of Zoinks spent on Zoinks Squad NFTs will be burned as part of our weekly Zoinks burn.')],
   },
   {
     title: t('How are the NFTs randomly distributed?'),

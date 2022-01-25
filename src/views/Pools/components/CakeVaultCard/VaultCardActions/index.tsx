@@ -40,7 +40,7 @@ export const IfoVaultCardAvgBalance = () => {
           placement="auto"
           display="inline"
           text={t(
-            'Max CAKE entry for both IFO sale is capped by average pool balance in this pool. This is calculated by the average block balance in the IFO pool in the past blocks prior to cut-off block.',
+            'Max Zoinks entry for both IFO sale is capped by average pool balance in this pool. This is calculated by the average block balance in the IFO pool in the past blocks prior to cut-off block.',
           )}
         />
       </FlexGap>

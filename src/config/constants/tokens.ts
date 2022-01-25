@@ -25,7 +25,7 @@ export const mainnetTokens = defineTokens({
     MAINNET,
     '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
     18,
-    'CAKE',
+    'Zoinks',
     'ZoinksSwap Token',
     'https://pancakeswap.finance/',
   ),

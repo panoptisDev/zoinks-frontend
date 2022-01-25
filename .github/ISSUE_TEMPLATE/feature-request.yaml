@@ -27,7 +27,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: How does this feature benefit ZoinksSwap users and CAKE holders?
+      label: How does this feature benefit ZoinksSwap users and Zoinks holders?
       description: Explain how this feature will be beneficial for the ZoinksSwap community and ecosystem.
     validations:
       required: true

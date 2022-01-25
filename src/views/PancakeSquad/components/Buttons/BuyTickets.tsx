@@ -104,7 +104,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
     <ConfirmModal
       title={t('Confirm')}
       isLoading={isConfirming}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.backgroundAlt}
       txHash={txHashBuyingResult}
       loadingText={t('Please confirm your transaction in wallet.')}
       loadingButtonLabel={t('Confirming...')}
@@ -118,9 +118,9 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
     <ConfirmModal
       title={t('Enable')}
       isLoading={isApproving}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.backgroundAlt}
       txHash={txHashEnablingResult}
-      loadingText={t('Please enable CAKE spending in your wallet')}
+      loadingText={t('Please enable Zoinks spending in your wallet')}
       loadingButtonLabel={t('Enabling...')}
       successButtonLabel={t('Close')}
       onConfirmClose={onConfirmClose}
@@ -132,7 +132,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
     <BuyTicketsModal
       title={t('Buy Minting Tickets')}
       buyTicketCallBack={handleConfirm}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.backgroundAlt}
       cakeBalance={cakeBalance}
       maxPerAddress={maxPerAddress}
       maxPerTransaction={maxPerTransaction}

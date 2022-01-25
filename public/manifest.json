@@ -1,7 +1,7 @@
 {
   "short_name": "ZoinksSwap",
   "name": "ZoinksSwap",
-  "description": "Farm CAKE with Zoinks LP Tokens",
+  "description": "Farm Zoinks with Zoinks LP Tokens",
   "homepage_url": "https://pancakeswap.finance",
   "start_url": ".",
   "display": "standalone",
