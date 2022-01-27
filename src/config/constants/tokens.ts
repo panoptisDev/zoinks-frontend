@@ -1939,8 +1939,7 @@ export const testnetTokens = defineTokens({
   ),
   cake: new Token(
     TESTNET,
-    // '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
-    '0x135b02E898258D71287778e266eD674659df3c76',
+    '0xbF4BcA9EC2f9079ad949674464973B21d29b24F9',
     18,
     'ZOINKS',
     'ZoinksSwap Token',
@@ -1957,7 +1956,7 @@ export const testnetTokens = defineTokens({
   ),
   syrup: new Token(
     TESTNET,
-    '0x6CdAB6fDc7A10E7Dc3f396cE257aae813cf359b3',
+    '0xF896e5a311438e474958bd685dACfC2b3C4eE1C0',
     18,
     'SYRUP',
     'SyrupBar Token',
