@@ -64,7 +64,6 @@ const DepositModal: React.FC<DepositModalProps> = ({
   const fullBalanceNumber = new BigNumber(fullBalance)
 
   const usdToStake = lpTokensToStake.times(lpPrice)
-
   const interestBreakdown = getInterestBreakdown({
     principalInUSD: !lpTokensToStake.isNaN() ? usdToStake.toNumber() : 0,
     apr,
@@ -125,7 +124,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
         <Text mr="8px" color="textSubtle">
           {t('Annual ROI at current rates')}:
         </Text>
-        {Number.isFinite(annualRoi) ? (
+        {Number.isFinite(annualRoi.toNumber()) ? (
           <AnnualRoiContainer
             alignItems="center"
             onClick={() => {

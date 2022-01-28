@@ -1939,7 +1939,7 @@ export const testnetTokens = defineTokens({
   ),
   cake: new Token(
     TESTNET,
-    '0xbF4BcA9EC2f9079ad949674464973B21d29b24F9',
+    '0xcb6BD69EC2E6e2Ca73Fc439E1f8881167c449Edc',
     18,
     'ZOINKS',
     'ZoinksSwap Token',

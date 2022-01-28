@@ -54,16 +54,16 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     sousId,
     vaultKey,
   } = pool
-
+  
   const {
     totalCakeInVault,
     fees: { performanceFee },
   } = useVaultPoolByKey(vaultKey)
 
   const vaultPools = useVaultPools()
-  const cakeInVaults = Object.values(vaultPools).reduce((total, vault) => {
-    return total.plus(vault.totalCakeInVault)
-  }, BIG_ZERO)
+  // const cakeInVaults = Object.values(vaultPools).reduce((total, vault) => {
+  //   return total.plus(vault.totalCakeInVault)
+  // }, BIG_ZERO)
 
   const tokenAddress = earningToken.address || ''
   const poolContractAddress = getAddress(contractAddress)
@@ -84,7 +84,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
       return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
     }
     if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(cakeInVaults)
+      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked); // .minus(cakeInVaults)
       return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
