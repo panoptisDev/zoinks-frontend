@@ -2,7 +2,7 @@ import { SalesSectionProps } from '.'
 
 export const earnSectionData: SalesSectionProps = {
   headingText: 'Earn passive income with crypto.',
-  bodyText: 'Zoinks makes it easy to make your crypto work for you.',
+  bodyText: 'ZoinksSwap makes it easy to make your crypto work for you.',
   reverse: true,
   images: {
     path: '/images/home/earn/',

@@ -39,14 +39,20 @@ const SalesSection: React.FC<SalesSectionProps> = (props) => {
           <Heading scale="md" color="overlay">
             {bodyTranslatedText}
           </Heading>
-          <Flex mt="8px">
-            {!account && <ConnectWalletButton mr="8px" />}
-            <RouterLink to="/swap">
-              <Button mr="8px" color="primary">{t('Trade Now')}</Button>
-            </RouterLink>
-            <RouterLink to="/farms">
-              <Button color="primary">{t('Earn')}</Button>
-            </RouterLink>
+          <Flex 
+            flexDirection="column"
+            flex="1"
+            alignSelf={['flex-start', null, null, null]}
+            mt="8px">
+            {!account && <ConnectWalletButton/>}
+            <Flex mt="8px">
+              <RouterLink to="/swap">
+                <Button mr="8px" color="primary">{t('Trade Now')}</Button>
+              </RouterLink>
+              <RouterLink to="/farms">
+                <Button color="primary">{t('Earn')}</Button>
+              </RouterLink>
+            </Flex>
           </Flex>
         </Flex>
         <Flex
