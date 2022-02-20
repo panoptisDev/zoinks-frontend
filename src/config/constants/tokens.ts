@@ -57,6 +57,14 @@ export const mainnetTokens = defineTokens({
     'Concentrated Voting Power Token',
     'https://powerpool.finance/',
   ),
+  snacks: new Token(
+    TESTNET,
+    '0x3675dAA9ED4d9AC537A2cB3260e652016b3a690f',
+    18,
+    'SNACKS',
+    'ZoinkSwap Token',
+    'https://zoinks.fi/',
+  ),
   bscdefi: new Token(
     MAINNET,
     '0x40E46dE174dfB776BB89E04dF1C47d8a66855EB3',
@@ -1939,7 +1947,7 @@ export const testnetTokens = defineTokens({
   ),
   cake: new Token(
     TESTNET,
-    '0xcb6BD69EC2E6e2Ca73Fc439E1f8881167c449Edc',
+    '0x95131456344d4506c0D6B82F6037955E72C6aDCb',
     18,
     'ZOINKS',
     'ZoinksSwap Token',
@@ -1948,11 +1956,19 @@ export const testnetTokens = defineTokens({
   busd: new Token(
     TESTNET,
     // '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
-    '0x421665aa54d4AE9B3f8c570aFD83d2aA112032CB',
+    '0xACa12172D98d97bd23695F3fdE6a596A515e4913',
     18,
     'BUSD',
     'Binance USD',
     'https://www.paxos.com/busd/',
+  ),
+  snacks: new Token(
+    TESTNET,
+    '0x0B25BC353BFAB52c758801C88A98749f723cBB28',
+    18,
+    'SNACKS',
+    'ZoinkSwap Token',
+    'https://zoinks.fi/',
   ),
   syrup: new Token(
     TESTNET,
