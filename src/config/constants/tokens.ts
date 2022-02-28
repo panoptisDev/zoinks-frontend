@@ -1964,7 +1964,7 @@ export const testnetTokens = defineTokens({
   ),
   snacks: new Token(
     TESTNET,
-    '0x244a392575e8A9F6Ad8ef2380F4B04bb84F57e49',
+    '0x8e03476f9AD15cB7d870952edD7c37D81CEE7916',
     18,
     'SNACKS',
     'ZoinkSwap Token',
@@ -1972,7 +1972,7 @@ export const testnetTokens = defineTokens({
   ),
   ethsnacks: new Token(
     TESTNET,
-    '0x02Fce410410999de04a47d931f1768C9c8963b95',
+    '0x284D76B58Ac74e3b3d8b06D0fd46FF6b67d54974',
     18,
     'ETHSNACKS',
     'ZoinkSwap Token',
@@ -1980,7 +1980,7 @@ export const testnetTokens = defineTokens({
   ),
   btcsnacks: new Token(
     TESTNET,
-    '0x723797eD27b039165169b508bB12fCCF6EA636B6',
+    '0x6Dbeb13Bd72390Dc73316634b8E76796dB560730',
     18,
     'BTCSNACKS',
     'ZoinkSwap Token',
@@ -2001,6 +2001,22 @@ export const testnetTokens = defineTokens({
     'BAKE',
     'Bakeryswap Token',
     'https://www.bakeryswap.org/',
+  ),
+  wbtc: new Token(
+    TESTNET,
+    '0xf486789B0B704470EFc2d5Bc295C3eCbc80882f3',
+    18,
+    'WBTC',
+    'ZoinkSwap Token',
+    'https://zoinks.fi/',
+  ),
+  weth: new Token(
+    TESTNET,
+    '0xd26ddc719E157f67b7f194Bccddb6023328239DE',
+    18,
+    'WETH',
+    'ZoinkSwap Token',
+    'https://zoinks.fi/',
   ),
 } as const)
 
