@@ -44,7 +44,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 1,
     lpSymbol: 'Zoinks-BUSD LP',
     lpAddresses: {
-      97: '0xcA78b9dd04752Db0576b85715ED5a66c3816A802',
+      97: '0x6C03A30F5bf625F6ba57174039Fc7Da2346d628F',
       56: '',
     },
     token: serializedTokens.cake,

@@ -1,7 +1,7 @@
 export default {
   masterChef: {
     // 97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
-    97: '0x4F8Ecc7b2c74242e34068664071aB2be1856C2E2',
+    97: '0x8Fb1959b415806Ed4fae733f54BaBa94ac8Ac413',
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
   },
   pulse: {
