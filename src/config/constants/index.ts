@@ -2,7 +2,7 @@ import { ChainId, JSBI, Percent, Token } from '@zoinks-swap/sdk'
 import { mainnetTokens, testnetTokens } from './tokens'
 
 // export const ROUTER_ADDRESS = '0x10ED43C718714eb63d5aA57B78B54704E256024E' // mainnet
-export const ROUTER_ADDRESS = '0x2df94f1402957B9924D8D005D965F3633997262d' // testnet
+export const ROUTER_ADDRESS = '0x7956FEFF10eB4691F8A747621A22CA1bf0614Fbe' // testnet
 
 // a list of tokens by chain
 type ChainTokenList = {
