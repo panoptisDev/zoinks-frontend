@@ -4,7 +4,7 @@ import { Skeleton } from '@zoinks-swap/uikit'
 
 export interface EarnedProps {
   earnings: number
-  pid: number
+  // pid: number
 }
 
 interface EarnedPropsWithLoading extends EarnedProps {
