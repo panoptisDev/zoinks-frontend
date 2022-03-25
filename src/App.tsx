@@ -59,6 +59,8 @@ const ProfileCreation = lazy(() => import('./views/ProfileCreation'))
 const PancakeSquad = lazy(() => import('./views/PancakeSquad'))
 const ZoinksMint = lazy(() => import('./views/ZoinksMint'))
 const SnacksMint = lazy(() => import('./views/SnacksMint'))
+const EthSnacksMint = lazy(() => import('./views/EthSnacksMint'))
+const BtcSnacksMint = lazy(() => import('./views/BtcSnacksMint'))
 
 // This config is required for number formatting
 BigNumber.config({
@@ -153,6 +155,8 @@ const App: React.FC = () => {
             <Route exact strict path="/liquidity" component={Liquidity} />
             <Route exact strict path="/mint/zoinks" component={ZoinksMint} />
             <Route exact strict path="/mint/snacks" component={SnacksMint} />
+            <Route exact strict path="/mint/ethsnacks" component={EthSnacksMint} />
+            <Route exact strict path="/mint/btcsnacks" component={BtcSnacksMint} />
             <Route exact strict path="/create" component={RedirectToAddLiquidity} />
             <Route exact path="/add" component={AddLiquidity} />
             <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />

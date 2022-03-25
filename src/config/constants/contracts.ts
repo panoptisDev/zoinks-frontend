@@ -12,6 +12,14 @@ export default {
     97: '0xA9BDF26e9c4C3cA941B6698D83d9429277837F53',
     56: '',
   },
+  btcsnacks: {
+    97: '0xF038bcAeC46D92498e8Ce7C06e96Bc7086360aC7',
+    56: '',
+  },
+  ethsnacks: {
+    97: '0x56B35F561EC6A7943974C652De6f495353053b6A',
+    56: '',
+  },
   pulse: {
     97: '0x8774d9c5643c5dF2961C01CaBaAA02d2Dbe0D6A8',
   },

@@ -34,6 +34,8 @@ import {
   getBunnySpecialXmasAddress,
   getZoinksAddress,
   getSnacksAddress,
+  getEthSnacksAddress,
+  getBtcSnacksAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -194,4 +196,10 @@ export const getZoinksContract = (signer?: ethers.Signer | ethers.providers.Prov
 }
 export const getSnacksContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(snacksAbi, getSnacksAddress(), signer)
+}
+export const getBtcSnacksContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(snacksAbi, getBtcSnacksAddress(), signer)
+}
+export const getEthSnacksContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(snacksAbi, getEthSnacksAddress(), signer)
 }

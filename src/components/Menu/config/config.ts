@@ -50,6 +50,14 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         label: t('Snacks'),
         href: '/mint/snacks',
       },
+      {
+        label: t('EthSnacks'),
+        href: '/mint/ethsnacks',
+      },
+      {
+        label: t('BtcSnacks'),
+        href: '/mint/btcsnacks',
+      },
     ],
   },
   {

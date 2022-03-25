@@ -35,6 +35,8 @@ import {
   getBunnySpecialXmasContract,
   getZoinksContract,
   getSnacksContract,
+  getEthSnacksContract,
+  getBtcSnacksContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
 import { VaultKey } from 'state/types'
@@ -226,6 +228,16 @@ export const useZoinksContract = () => {
 export const useSnacksContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getSnacksContract(library.getSigner()), [library])
+}
+
+export const useEthSnacksContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getEthSnacksContract(library.getSigner()), [library])
+}
+
+export const useBtcSnacksContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getBtcSnacksContract(library.getSigner()), [library])
 }
 
 export const useFarmAuctionContract = () => {

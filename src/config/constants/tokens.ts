@@ -1934,6 +1934,38 @@ export const mainnetTokens = defineTokens({
     'Battle Hero',
     'https://battlehero.io/',
   ),
+  wbtc: new Token(
+    MAINNET,
+    '0xf486789B0B704470EFc2d5Bc295C3eCbc80882f3',
+    18,
+    'WBTC',
+    'ZoinkSwap Token',
+    'https://zoinks.fi/',
+  ),
+  weth: new Token(
+    MAINNET,
+    '0xd26ddc719E157f67b7f194Bccddb6023328239DE',
+    18,
+    'WETH',
+    'ZoinkSwap Token',
+    'https://zoinks.fi/',
+  ),
+  ethsnacks: new Token(
+    MAINNET,
+    '0x56B35F561EC6A7943974C652De6f495353053b6A',
+    18,
+    'ETHSNACKS',
+    'ZoinkSwap Token',
+    'https://zoinks.fi/',
+  ),
+  btcsnacks: new Token(
+    MAINNET,
+    '0xF038bcAeC46D92498e8Ce7C06e96Bc7086360aC7',
+    18,
+    'BTCSNACKS',
+    'ZoinkSwap Token',
+    'https://zoinks.fi/',
+  ),
 } as const)
 
 export const testnetTokens = defineTokens({

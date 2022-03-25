@@ -97,3 +97,9 @@ export const getZoinksAddress = () => {
 export const getSnacksAddress = () => {
   return getAddress(addresses.snacks)
 }
+export const getBtcSnacksAddress = () => {
+  return getAddress(addresses.btcsnacks)
+}
+export const getEthSnacksAddress = () => {
+  return getAddress(addresses.ethsnacks)
+}
