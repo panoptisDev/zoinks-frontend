@@ -88,7 +88,7 @@ export default function CurrencySearchModal({
     },
     [CurrencyModalView.importList]: { title: t('Import List'), onBack: () => setModalView(CurrencyModalView.search) },
   }
-
+  console.log(modalView)
   return (
     <StyledModalContainer minWidth="320px">
       <ModalHeader>

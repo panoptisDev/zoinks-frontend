@@ -37,6 +37,22 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     ],
   },
   {
+    label: t('Mint'),
+    icon: 'Swap',
+    href: '/mint/zoinks',
+    showItemsOnMobile: false,
+    items: [
+      {
+        label: t('Zoinks'),
+        href: '/mint/zoinks',
+      },
+      {
+        label: t('Snacks'),
+        href: '/mint/snacks',
+      },
+    ],
+  },
+  {
     label: '',
     href: '/more',
     icon: 'More',
@@ -47,7 +63,7 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         href: 'https://github.com/zoinksDAO',
         type: DropdownMenuItemType.EXTERNAL_LINK,
       },
-    ]
+    ],
   },
   // {
   //   label: t('Win'),

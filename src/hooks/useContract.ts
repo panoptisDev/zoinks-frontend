@@ -33,6 +33,8 @@ import {
   getPancakeSquadContract,
   getErc721CollectionContract,
   getBunnySpecialXmasContract,
+  getZoinksContract,
+  getSnacksContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
 import { VaultKey } from 'state/types'
@@ -214,6 +216,16 @@ export const useNftSaleContract = () => {
 export const usePancakeSquadContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getPancakeSquadContract(library.getSigner()), [library])
+}
+
+export const useZoinksContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getZoinksContract(library.getSigner()), [library])
+}
+
+export const useSnacksContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getSnacksContract(library.getSigner()), [library])
 }
 
 export const useFarmAuctionContract = () => {

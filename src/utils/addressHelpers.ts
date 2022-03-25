@@ -91,3 +91,9 @@ export const getNftSaleAddress = () => {
 export const getPancakeSquadAddress = () => {
   return getAddress(addresses.pancakeSquad)
 }
+export const getZoinksAddress = () => {
+  return getAddress(addresses.zoinks)
+}
+export const getSnacksAddress = () => {
+  return getAddress(addresses.snacks)
+}

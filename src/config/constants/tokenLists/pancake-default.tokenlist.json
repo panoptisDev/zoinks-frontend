@@ -21,8 +21,8 @@
     {
       "name": "BUSD Token",
       "symbol": "BUSD",
-      "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
-      "chainId": 56,
+      "address": "0xD0F7d3611d2faDc1838FBAc6c2Dbe19EC8cCE359",
+      "chainId": 97,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0xe9e7cea3dedca5984780bafc599bd69add087d56.png"
     },
@@ -53,8 +53,16 @@
     {
       "name": "ZoinksSwap Token",
       "symbol": "Zoinks",
-      "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
-      "chainId": 56,
+      "address": "0x5F2b475aa07a99948Dc99e71fe2720D4ba604Dc4",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
+    },
+    {
+      "name": "ZoinksSwap Token",
+      "symbol": "Snacks",
+      "address": "0xA9BDF26e9c4C3cA941B6698D83d9429277837F53",
+      "chainId": 97,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
     },

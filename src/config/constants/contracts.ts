@@ -4,6 +4,14 @@ export default {
     97: '0x6CDA12D62E49F1BE7812a9EEeB59B43345b651A0',
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
   },
+  zoinks: {
+    97: '0x5F2b475aa07a99948Dc99e71fe2720D4ba604Dc4',
+    56: '',
+  },
+  snacks: {
+    97: '0xA9BDF26e9c4C3cA941B6698D83d9429277837F53',
+    56: '',
+  },
   pulse: {
     97: '0x8774d9c5643c5dF2961C01CaBaAA02d2Dbe0D6A8',
   },

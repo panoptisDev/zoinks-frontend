@@ -32,6 +32,8 @@ import {
   getPancakeSquadAddress,
   getTradingCompetitionAddressV2,
   getBunnySpecialXmasAddress,
+  getZoinksAddress,
+  getSnacksAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -70,6 +72,8 @@ import nftMarketAbi from 'config/abi/nftMarket.json'
 import nftSaleAbi from 'config/abi/nftSale.json'
 import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
+import zoinksAbi from 'config/abi/zoinksContract.json'
+import snacksAbi from 'config/abi/snacksContract.json'
 import { ChainLinkOracleContract, FarmAuctionContract, PancakeProfileContract, PredictionsContract } from './types'
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
@@ -184,4 +188,10 @@ export const getPancakeSquadContract = (signer?: ethers.Signer | ethers.provider
 }
 export const getErc721CollectionContract = (signer?: ethers.Signer | ethers.providers.Provider, address?: string) => {
   return getContract(erc721CollectionAbi, address, signer)
+}
+export const getZoinksContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(zoinksAbi, getZoinksAddress(), signer)
+}
+export const getSnacksContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(snacksAbi, getSnacksAddress(), signer)
 }
