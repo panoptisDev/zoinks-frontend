@@ -436,17 +436,6 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                         {wrapInputError ??
                           (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
                       </Button>
-                    ) : noRoute && userHasSpecifiedInputOutput ? (
-                      <GreyCard style={{ textAlign: 'center' }}>
-                        <Text color="textSubtle" mb="4px">
-                          {t('Insufficient liquidity for this trade.')}
-                        </Text>
-                        {singleHopOnly && (
-                          <Text color="textSubtle" mb="4px">
-                            {t('Try enabling multi-hop trades.')}
-                          </Text>
-                        )}
-                      </GreyCard>
                     ) : showApproveFlow ? (
                       <RowBetween>
                         <Button
