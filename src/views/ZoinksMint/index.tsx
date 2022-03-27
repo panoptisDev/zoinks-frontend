@@ -387,7 +387,7 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                       id="swap-currency-output"
                     />
 
-                    {isExpertMode && recipient !== null && !showWrap ? (
+                    {recipient !== null && !showWrap ? (
                       <>
                         <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
                           <ArrowWrapper clickable={false}>
@@ -471,17 +471,9 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                           }}
                           width="48%"
                           id="swap-button"
-                          disabled={
-                            !isValid ||
-                            approval !== ApprovalState.APPROVED ||
-                            (priceImpactSeverity > 3 && !isExpertMode)
-                          }
+                          disabled={!isValid || approval !== ApprovalState.APPROVED}
                         >
-                          {priceImpactSeverity > 3 && !isExpertMode
-                            ? t('Price Impact High')
-                            : priceImpactSeverity > 2
-                            ? t('Mint Anyway')
-                            : t('Mint')}
+                          {t('Mint')}
                         </Button>
                       </RowBetween>
                     ) : (
@@ -502,14 +494,9 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                         }}
                         id="swap-button"
                         width="100%"
-                        disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode)}
+                        disabled={!isValid}
                       >
-                        {swapInputError ||
-                          (priceImpactSeverity > 3 && !isExpertMode
-                            ? t('Price Impact Too High')
-                            : priceImpactSeverity > 2
-                            ? t('Mint Anyway')
-                            : t('Mint'))}
+                        {t('Mint')}
                       </Button>
                     )}
                     {showApproveFlow && (
