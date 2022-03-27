@@ -455,19 +455,9 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                           )}
                         </Button>
                         <Button
-                          variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
+                          variant="primary"
                           onClick={() => {
-                            if (isExpertMode) {
-                              handleSwap()
-                            } else {
-                              setSwapState({
-                                tradeToConfirm: trade,
-                                attemptingTxn: false,
-                                swapErrorMessage: undefined,
-                                txHash: undefined,
-                              })
-                              onPresentConfirmModal()
-                            }
+                            handleSwap()
                           }}
                           width="48%"
                           id="swap-button"
@@ -478,19 +468,9 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                       </RowBetween>
                     ) : (
                       <Button
-                        variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
+                        variant="primary"
                         onClick={() => {
-                          if (isExpertMode) {
-                            handleSwap()
-                          } else {
-                            setSwapState({
-                              tradeToConfirm: trade,
-                              attemptingTxn: false,
-                              swapErrorMessage: undefined,
-                              txHash: undefined,
-                            })
-                            onPresentConfirmModal()
-                          }
+                          handleSwap()
                         }}
                         id="swap-button"
                         width="100%"
@@ -504,7 +484,7 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                         <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />
                       </Column>
                     )}
-                    {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
+                    {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
                   </Box>
                 </Wrapper>
               </AppBody>
