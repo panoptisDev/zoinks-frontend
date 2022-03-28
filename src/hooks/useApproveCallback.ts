@@ -33,6 +33,8 @@ export function useApproveCallback(
 
   // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
+    console.log(amountToApprove)
+    console.log(spender)
     if (!amountToApprove || !spender) return ApprovalState.UNKNOWN
     if (amountToApprove.currency === ETHER) return ApprovalState.APPROVED
     // we might not have enough data to know whether or not we need to approve

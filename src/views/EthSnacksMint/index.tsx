@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { CurrencyAmount, JSBI, Token, Trade } from '@zoinks-swap/sdk'
+import { CurrencyAmount, JSBI, Token, Trade, TokenAmount } from '@zoinks-swap/sdk'
 import {
   Button,
   Text,
@@ -153,7 +153,7 @@ export default function EthSnacksMint({ history }: RouteComponentProps) {
         [Field.OUTPUT]: parsedAmount,
       }
     : {
-        [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
+        [Field.INPUT]: new TokenAmount(tokens.weth, '1'),
         [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
       }
 
@@ -209,13 +209,6 @@ export default function EthSnacksMint({ history }: RouteComponentProps) {
     }
   }, [approval, approvalSubmitted])
 
-  const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
-  const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
-
-  const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
-
-  const [singleHopOnly] = useUserSingleHopOnly()
-
   const { ethsnacksBuy, ethsnacksRedeem } = useEthSnacksMint()
   const handleSwap = async () => {
     try {
@@ -236,18 +229,6 @@ export default function EthSnacksMint({ history }: RouteComponentProps) {
     (approval === ApprovalState.NOT_APPROVED ||
       approval === ApprovalState.PENDING ||
       (approvalSubmitted && approval === ApprovalState.APPROVED))
-
-  const handleConfirmDismiss = useCallback(() => {
-    setSwapState({ tradeToConfirm, attemptingTxn, swapErrorMessage, txHash })
-    // if there was a tx hash, we want to clear the input
-    if (txHash) {
-      onUserInput(Field.INPUT, '')
-    }
-  }, [attemptingTxn, onUserInput, swapErrorMessage, tradeToConfirm, txHash])
-
-  const handleAcceptChanges = useCallback(() => {
-    setSwapState({ tradeToConfirm: trade, swapErrorMessage, txHash, attemptingTxn })
-  }, [attemptingTxn, swapErrorMessage, trade, txHash])
 
   // swap warning state
   const [swapWarningCurrency, setSwapWarningCurrency] = useState(null)
@@ -333,7 +314,7 @@ export default function EthSnacksMint({ history }: RouteComponentProps) {
                       label={
                         independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')
                       }
-                      value={formattedAmounts[Field.INPUT]}
+                      value="0"
                       showMaxButton={false}
                       currency={currencies[Field.INPUT]}
                       onUserInput={handleTypeInput}
