@@ -197,7 +197,10 @@ export default function EthSnacksMint({ history }: RouteComponentProps) {
   }
 
   // check whether the user has approved the router on the input token
-  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.INPUT], tokens.ethsnacks.address)
+  const [approval, approveCallback] = useApproveCallback(
+    textIndex === 0 ? parsedAmounts[Field.OUTPUT] : parsedAmounts[Field.INPUT],
+    tokens.ethsnacks.address,
+  )
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
@@ -314,7 +317,7 @@ export default function EthSnacksMint({ history }: RouteComponentProps) {
                       label={
                         independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')
                       }
-                      value="0"
+                      value={textIndex === 0 ? formattedAmounts[Field.INPUT] : '0'}
                       showMaxButton={false}
                       currency={currencies[Field.INPUT]}
                       onUserInput={handleTypeInput}
@@ -353,7 +356,7 @@ export default function EthSnacksMint({ history }: RouteComponentProps) {
                       </AutoRow>
                     </AutoColumn>
                     <CurrencyInputPanel
-                      value={formattedAmounts[Field.OUTPUT]}
+                      value={textIndex === 1 ? formattedAmounts[Field.OUTPUT] : '0'}
                       onUserInput={handleTypeOutput}
                       label={independentField === Field.INPUT && !showWrap && trade ? t('To (estimated)') : t('To')}
                       showMaxButton={false}
