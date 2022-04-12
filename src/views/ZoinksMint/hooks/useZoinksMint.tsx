@@ -8,7 +8,6 @@ const useZoinksMint = () => {
   const handleMint = useCallback(
     async (amount: string) => {
       const txHash = await zoinksMint(zoinksContract, amount)
-      console.info(txHash)
     },
     [zoinksContract],
   )

@@ -14,7 +14,7 @@ import { computeSlippageAdjustedAmounts } from 'utils/prices'
 import getLpAddress from 'utils/getLpAddress'
 import { getTokenAddress } from 'views/Swap/components/Chart/utils'
 import { AppDispatch, AppState } from '../index'
-import { useCurrencyBalances } from '../wallet/hooks'
+import { useTokenBalances, useCurrencyBalances } from '../wallet/hooks'
 import {
   Field,
   replaceSwapState,
@@ -39,6 +39,7 @@ import { derivedPairByDataIdSelector, pairByDataIdSelector } from './selectors'
 import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY } from './constants'
 import fetchDerivedPriceData from './fetch/fetchDerivedPriceData'
 import { pairHasEnoughLiquidity } from './fetch/utils'
+import { useSnacksBuyAmount, useSnacksBuyBackAmount } from '../../hooks/useSnacksTrade'
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
@@ -245,6 +246,108 @@ export function useDerivedSwapInfo(): {
     currencyBalances,
     parsedAmount,
     v2Trade: v2Trade ?? undefined,
+    inputError,
+  }
+}
+
+// from the current swap inputs, compute the best trade and return it.
+export function useSnacksBuyInfo(
+  tokenAmount,
+  outputToken,
+): {
+  currencyBalances: { [field in Field]?: CurrencyAmount }
+  requiredAmount: CurrencyAmount | undefined
+  inputError?: string
+} {
+  const { account } = useActiveWeb3React()
+  const { t } = useTranslation()
+
+  // const inputCurrency = useCurrency(inputCurrencyId)
+  // const outputCurrency = useCurrency(outputCurrencyId)
+
+  const requiredAmount = useSnacksBuyAmount(tokenAmount, outputToken)
+
+  const relevantTokenBalances = useTokenBalances(account ?? undefined, [
+    tokenAmount.token ?? undefined,
+    outputToken ?? undefined,
+  ])
+
+  const currencyBalances = {
+    [Field.INPUT]: relevantTokenBalances[0],
+    [Field.OUTPUT]: relevantTokenBalances[1],
+  }
+
+  let inputError: string | undefined
+  if (!account) {
+    inputError = t('Connect Wallet')
+  }
+
+  if (!tokenAmount) {
+    inputError = inputError ?? t('Enter an amount')
+  }
+
+  // compare input balance to max input based on version
+  const [balanceIn, amountIn] = [currencyBalances[Field.OUTPUT], requiredAmount]
+
+  if (balanceIn && amountIn && balanceIn.lessThan(amountIn)) {
+    inputError = t('Insufficient %symbol% balance', { symbol: amountIn.currency.symbol })
+  }
+
+  return {
+    currencyBalances,
+    requiredAmount,
+    inputError,
+  }
+}
+
+// from the current swap inputs, compute the best trade and return it.
+export function useSnacksBuyBackInfo(
+  tokenAmount,
+  outputToken,
+): {
+  currencyBalances: { [field in Field]?: CurrencyAmount }
+  redeemAmount: CurrencyAmount | undefined
+  inputError?: string
+} {
+  const { account } = useActiveWeb3React()
+  const { t } = useTranslation()
+
+  // const inputCurrency = useCurrency(inputCurrencyId)
+  // const outputCurrency = useCurrency(outputCurrencyId)
+
+  const redeemAmount = useSnacksBuyBackAmount(tokenAmount, outputToken)
+  console.log(tokenAmount.token)
+  console.log(outputToken)
+  const relevantTokenBalances = useTokenBalances(account ?? undefined, [
+    tokenAmount.token ?? undefined,
+    outputToken ?? undefined,
+  ])
+
+  const currencyBalances = {
+    [Field.INPUT]: relevantTokenBalances[0],
+    [Field.OUTPUT]: relevantTokenBalances[1],
+  }
+
+  let inputError: string | undefined
+  if (!account) {
+    inputError = t('Connect Wallet')
+  }
+
+  if (!tokenAmount) {
+    inputError = inputError ?? t('Enter an amount')
+  }
+
+  // compare input balance to max input based on version
+  const [balanceIn, amountIn] = [currencyBalances[Field.OUTPUT], redeemAmount]
+
+  if (balanceIn && amountIn && balanceIn.lessThan(amountIn)) {
+    inputError = t('Insufficient %symbol% balance', { symbol: amountIn.currency.symbol })
+  }
+  console.log(relevantTokenBalances)
+  console.log(amountIn?.toExact())
+  return {
+    currencyBalances,
+    redeemAmount,
     inputError,
   }
 }

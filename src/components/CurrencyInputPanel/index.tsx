@@ -57,6 +57,7 @@ interface CurrencyInputPanelProps {
   otherCurrency?: Currency | null
   id: string
   showCommonBases?: boolean
+  onlyInteger?: boolean
 }
 export default function CurrencyInputPanel({
   value,
@@ -72,6 +73,7 @@ export default function CurrencyInputPanel({
   otherCurrency,
   id,
   showCommonBases,
+  onlyInteger = false,
 }: CurrencyInputPanelProps) {
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -135,6 +137,7 @@ export default function CurrencyInputPanel({
               <NumericalInput
                 className="token-amount-input"
                 value={value}
+                onlyInteger={onlyInteger}
                 onUserInput={(val) => {
                   onUserInput(val)
                 }}

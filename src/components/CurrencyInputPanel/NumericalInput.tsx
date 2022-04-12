@@ -40,21 +40,25 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
 `
 
 const inputRegex = RegExp(`^\\d*(?:\\\\[.])?\\d*$`) // match escaped "." characters via in a non-capturing group
+const integerinputRegex = RegExp(`^\\d*(?:\\\\[])?\\d*$`) // match escaped "." characters via in a non-capturing group
 
 export const Input = React.memo(function InnerInput({
   value,
   onUserInput,
   placeholder,
+  onlyInteger,
   ...rest
 }: {
   value: string | number
   onUserInput: (input: string) => void
+  onlyInteger?: boolean
   error?: boolean
   fontSize?: string
   align?: 'right' | 'left'
 } & Omit<React.HTMLProps<HTMLInputElement>, 'ref' | 'onChange' | 'as'>) {
   const enforcer = (nextUserInput: string) => {
-    if (nextUserInput === '' || inputRegex.test(escapeRegExp(nextUserInput))) {
+    const regex = onlyInteger ? integerinputRegex : inputRegex
+    if (nextUserInput === '' || regex.test(escapeRegExp(nextUserInput))) {
       onUserInput(nextUserInput)
     }
   }

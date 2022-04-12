@@ -16,7 +16,6 @@ const useSnacksMint = () => {
   const handleRedeem = useCallback(
     async (amount: string) => {
       const txHash = await snacksRedeem(snacksContract, amount)
-      console.info(txHash)
     },
     [snacksContract],
   )

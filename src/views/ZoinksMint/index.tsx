@@ -13,21 +13,14 @@ import {
   useMatchBreakpoints,
   ArrowUpDownIcon,
 } from '@zoinks-swap/uikit'
-import { useIsTransactionUnsupported } from 'hooks/Trades'
-import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
-import Footer from 'components/Menu/Footer'
 import { RouteComponentProps } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
 import tokens from 'config/constants/tokens'
 import AddressInputPanel from './components/AddressInputPanel'
-import { GreyCard } from '../../components/Card'
 import Column, { AutoColumn } from '../../components/Layout/Column'
-import ConfirmSwapModal from './components/ConfirmSwapModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AutoRow, RowBetween } from '../../components/Layout/Row'
-import AdvancedSwapDetailsDropdown from './components/AdvancedSwapDetailsDropdown'
-import confirmPriceImpactWithoutFee from './components/confirmPriceImpactWithoutFee'
 import { ArrowWrapper, SwapCallbackError, Wrapper } from './components/styleds'
 import TradePrice from './components/TradePrice'
 import ImportTokenWarningModal from './components/ImportTokenWarningModal'
@@ -48,12 +41,7 @@ import {
   useSwapState,
   useSingleTokenSwapInfo,
 } from '../../state/swap/hooks'
-import {
-  useExpertModeManager,
-  useUserSlippageTolerance,
-  useUserSingleHopOnly,
-  useExchangeChartManager,
-} from '../../state/user/hooks'
+import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import CircleLoader from '../../components/Loader/CircleLoader'
@@ -90,14 +78,6 @@ const SwitchIconButton = styled(IconButton)`
 export default function ZoinksMint({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const { t } = useTranslation()
-  const { isMobile } = useMatchBreakpoints()
-  const [isChartExpanded, setIsChartExpanded] = useState(false)
-  const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
-  const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
-
-  useEffect(() => {
-    setUserChartPreference(isChartDisplayed)
-  }, [isChartDisplayed, setUserChartPreference])
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -128,7 +108,6 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
-
   // Price data
   const {
     [Field.INPUT]: { currencyId: inputCurrencyId },
@@ -191,13 +170,8 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
       ? parsedAmounts[independentField]?.toExact() ?? ''
       : parsedAmounts[dependentField]?.toSignificant(6) ?? '',
   }
-
+  console.log(formattedAmounts)
   const route = trade?.route
-  const userHasSpecifiedInputOutput = Boolean(
-    currencies[Field.INPUT] && currencies[Field.OUTPUT] && parsedAmounts[independentField]?.greaterThan(JSBI.BigInt(0)),
-  )
-  const noRoute = !route
-
   // check whether the user has approved the router on the input token
   // const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
 
@@ -217,12 +191,9 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
 
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
 
-  const [singleHopOnly] = useUserSingleHopOnly()
-
   const { zoinksMint } = useZoinksMint()
   const handleSwap = async () => {
     try {
-      console.log(formattedAmounts[Field.INPUT])
       await zoinksMint(formattedAmounts[Field.INPUT])
     } catch (e) {
       console.log(e)
@@ -314,8 +285,6 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
     [onCurrencySelection],
   )
 
-  const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
-
   const [onPresentImportTokenWarningModal] = useModal(
     <ImportTokenWarningModal tokens={importTokensNotInDefault} onCancel={() => history.push('/swap')} />,
   )
@@ -327,37 +296,14 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [importTokensNotInDefault.length])
 
-  const [onPresentConfirmModal] = useModal(
-    <ConfirmSwapModal
-      trade={trade}
-      originalTrade={tradeToConfirm}
-      onAcceptChanges={handleAcceptChanges}
-      attemptingTxn={attemptingTxn}
-      txHash={txHash}
-      recipient={recipient}
-      allowedSlippage={allowedSlippage}
-      onConfirm={handleSwap}
-      swapErrorMessage={swapErrorMessage}
-      customOnDismiss={handleConfirmDismiss}
-    />,
-    true,
-    true,
-    'confirmSwapModal',
-  )
-
   return (
-    <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
+    <Page>
       <Flex width="100%" justifyContent="center" position="relative">
         <Flex flexDirection="column">
-          <StyledSwapContainer $isChartExpanded={isChartExpanded}>
-            <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
+          <StyledSwapContainer $isChartExpanded={false}>
+            <StyledInputCurrencyWrapper>
               <AppBody>
-                <CurrencyInputHeader
-                  title={t('Zoinks Mint')}
-                  subtitle={t('Buy Zoinks in an instant')}
-                  setIsChartDisplayed={setIsChartDisplayed}
-                  isChartDisplayed={isChartDisplayed}
-                />
+                <CurrencyInputHeader title={t('Zoinks Mint')} subtitle={t('Buy Zoinks in an instant')} />
                 <Wrapper id="swap-page">
                   <AutoColumn gap="md">
                     <CurrencyInputPanel
@@ -425,11 +371,7 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                     )}
                   </AutoColumn>
                   <Box mt="1rem">
-                    {swapIsUnsupported ? (
-                      <Button width="100%" disabled mb="4px">
-                        {t('Unsupported Asset')}
-                      </Button>
-                    ) : !account ? (
+                    {!account ? (
                       <ConnectWalletButton width="100%" />
                     ) : showWrap ? (
                       <Button width="100%" disabled={Boolean(wrapInputError)} onClick={onWrap}>
@@ -488,18 +430,8 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                   </Box>
                 </Wrapper>
               </AppBody>
-              {!swapIsUnsupported ? (
-                trade && <AdvancedSwapDetailsDropdown trade={trade} />
-              ) : (
-                <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
-              )}
             </StyledInputCurrencyWrapper>
           </StyledSwapContainer>
-          {isChartExpanded && (
-            <Box display={['none', null, null, 'block']} width="100%" height="100%">
-              <Footer />
-            </Box>
-          )}
         </Flex>
       </Flex>
     </Page>
