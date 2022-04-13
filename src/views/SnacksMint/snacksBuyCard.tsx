@@ -5,6 +5,7 @@ import { Button, Text, ArrowDownIcon, Box, useModal, Flex, IconButton, ArrowUpDo
 import { ethers } from 'ethers'
 import { useTranslation } from 'contexts/Localization'
 import tokens from 'config/constants/tokens'
+import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import Column, { AutoColumn } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AutoRow, RowBetween } from '../../components/Layout/Row'
@@ -30,7 +31,10 @@ export default function SnacksBuyCard() {
 
   const [amount, setAmount] = useState<string>()
 
-  const parsedTokenAmount = new TokenAmount(tokens.snacks, amount ? JSBI.BigInt(amount) : '0')
+  const parsedTokenAmount = new TokenAmount(
+    tokens.snacks,
+    amount ? JSBI.multiply(JSBI.BigInt(amount), JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)) : '0',
+  )
 
   const {
     currencyBalances,

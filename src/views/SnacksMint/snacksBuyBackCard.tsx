@@ -3,6 +3,7 @@ import { CurrencyAmount, JSBI, Token, Trade, TokenAmount } from '@zoinks-swap/sd
 import { Button, Box, Text } from '@zoinks-swap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import tokens from 'config/constants/tokens'
+import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import Column, { AutoColumn } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AppBody } from '../../components/App'
@@ -23,7 +24,10 @@ export default function SnacksBuyBackCard() {
 
   const [amount, setAmount] = useState<string>()
 
-  const parsedTokenAmount = new TokenAmount(tokens.snacks, amount ? JSBI.BigInt(amount) : '0')
+  const parsedTokenAmount = new TokenAmount(
+    tokens.snacks,
+    amount ? JSBI.multiply(JSBI.BigInt(amount), JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)) : '0',
+  )
 
   const {
     currencyBalances,

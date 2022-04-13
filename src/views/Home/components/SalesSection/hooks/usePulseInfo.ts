@@ -5,9 +5,10 @@ import { useCurrency } from 'hooks/Tokens'
 import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
 import { useTokenBalances, useCurrencyBalances } from 'state/wallet/hooks'
 import tokens from 'config/constants/tokens'
+import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { getPulseAddress } from 'utils/addressHelpers'
 import { useSnacksBuyBackInfo, tryParseAmount } from 'state/swap/hooks'
-import { useSnacksBuyBackAmount } from 'hooks/useSnacksTrade'
+import { useSnacksBuyAmount } from 'hooks/useSnacksTrade'
 import { ethers } from 'ethers'
 
 // from the current swap inputs, compute the best trade and return it.
@@ -23,6 +24,7 @@ export function usePulseInfo() {
     tokens.snacks,
     JSBI.divide(snacksBalance?.raw ?? JSBI.BigInt(0), JSBI.BigInt(10)),
   )
+
   const zoinksConvertAmount = new TokenAmount(
     tokens.cake,
     JSBI.divide(zoinksBalance?.raw ?? JSBI.BigInt(0), JSBI.BigInt(10)),
@@ -31,25 +33,35 @@ export function usePulseInfo() {
   const { redeemAmount: redeemPartAmount } = useSnacksBuyBackInfo(snacksConvertAmount, tokens.cake)
 
   const { redeemAmount: redeemTotalAmount } = useSnacksBuyBackInfo(snacksConvertAmount, tokens.cake)
+  const pulsePartAmount =
+    parseFloat(zoinksConvertAmount?.toExact() ?? '0') + parseFloat(redeemPartAmount?.toExact() ?? '0')
 
-  const pulsePartAmount = JSBI.add(
-    zoinksConvertAmount?.raw ? JSBI.BigInt(zoinksConvertAmount?.toExact()) : JSBI.BigInt(0),
-    redeemPartAmount?.raw ? JSBI.BigInt(redeemPartAmount?.toExact()) : JSBI.BigInt(0),
-  ).toString()
+  const pulseTotalAmount = parseFloat(zoinksBalance?.toExact() ?? '0') + parseFloat(redeemTotalAmount?.toExact() ?? '0')
 
-  const pulseTotalAmount = JSBI.add(
-    zoinksBalance?.raw ? JSBI.BigInt(zoinksBalance?.toExact()) : JSBI.BigInt(0),
-    redeemTotalAmount?.raw ? JSBI.BigInt(redeemTotalAmount?.toExact()) : JSBI.BigInt(0),
-  ).toString()
-
-  const parsedPartAmount = tryParseAmount(pulsePartAmount, tokens.cake)
-  const parsedTotalAmount = tryParseAmount(pulseTotalAmount, tokens.cake)
+  const parsedPartAmount = tryParseAmount(pulsePartAmount.toString(), tokens.cake)
+  const parsedTotalAmount = tryParseAmount(pulseTotalAmount.toString(), tokens.cake)
 
   const bestTradePartExactIn = useTradeExactIn(parsedPartAmount, tokens.busd)
   const bestTradeTotalExactIn = useTradeExactIn(parsedTotalAmount, tokens.busd)
 
+  const snacksPrice = useSnacksBuyAmount(
+    new TokenAmount(tokens.snacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
+    tokens.cake,
+  )
+  const ethsnacksPrice = useSnacksBuyAmount(
+    new TokenAmount(tokens.ethsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
+    tokens.weth,
+  )
+  const btcsnacksPrice = useSnacksBuyAmount(
+    new TokenAmount(tokens.btcsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
+    tokens.wbtc,
+  )
+
   return {
     nextPulsePartAmount: bestTradePartExactIn,
     nextPulseTotalAmount: bestTradeTotalExactIn,
+    snacksPrice,
+    ethsnacksPrice,
+    btcsnacksPrice,
   }
 }

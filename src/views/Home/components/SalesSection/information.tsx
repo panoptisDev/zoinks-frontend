@@ -42,7 +42,7 @@ const Informations = () => {
     return remainTime
   }
 
-  const { nextPulsePartAmount, nextPulseTotalAmount } = usePulseInfo()
+  const { nextPulsePartAmount, nextPulseTotalAmount, snacksPrice, ethsnacksPrice, btcsnacksPrice } = usePulseInfo()
 
   return (
     <>
@@ -52,6 +52,9 @@ const Informations = () => {
         </div>
         <div>Next Pulse Amount : $ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</div>
         <div>TVL : $ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
+        <div>Snacks Price: {snacksPrice?.toExact()}</div>
+        <div>EthSnacks Price: {ethsnacksPrice?.toExact()}</div>
+        <div>BtcSnacks Price: {btcsnacksPrice?.toExact()}</div>
       </TimerLabelWrapper>
     </>
   )
