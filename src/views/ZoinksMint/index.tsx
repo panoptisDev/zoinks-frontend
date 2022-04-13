@@ -57,24 +57,6 @@ const Label = styled(Text)`
   color: ${({ theme }) => theme.colors.secondary};
 `
 
-const SwitchIconButton = styled(IconButton)`
-  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
-  .icon-up-down {
-    display: none;
-  }
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
-    .icon-down {
-      display: none;
-      fill: white;
-    }
-    .icon-up-down {
-      display: block;
-      fill: white;
-    }
-  }
-`
-
 export default function ZoinksMint({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const { t } = useTranslation()
@@ -170,8 +152,6 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
       ? parsedAmounts[independentField]?.toExact() ?? ''
       : parsedAmounts[dependentField]?.toSignificant(6) ?? '',
   }
-  console.log(formattedAmounts)
-  const route = trade?.route
   // check whether the user has approved the router on the input token
   // const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
 

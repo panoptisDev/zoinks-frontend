@@ -8,8 +8,8 @@ import { useSingleCallResult } from '../state/multicall/hooks'
  * Returns the best trade for the exact amount of tokens in to the given token out
  */
 export function useSnacksBuyAmount(tokenAmount: TokenAmount, token1: Token): TokenAmount | null {
-  const contract = useSnacksTokenContract(tokenAmount.token.address, false)
-  const value = new BigNumber(tokenAmount.toExact()).times(DEFAULT_TOKEN_DECIMAL).toString()
+  const contract = useSnacksTokenContract(tokenAmount?.token?.address, false)
+  const value = new BigNumber(tokenAmount?.toExact()).times(DEFAULT_TOKEN_DECIMAL).toString()
 
   const inputs = [value]
   const requireAmount = useSingleCallResult(contract, 'calculateBuyAmount', inputs).result
@@ -21,8 +21,8 @@ export function useSnacksBuyAmount(tokenAmount: TokenAmount, token1: Token): Tok
 }
 
 export function useSnacksBuyBackAmount(tokenAmount: TokenAmount, token1: Token): TokenAmount | null {
-  const contract = useSnacksTokenContract(tokenAmount?.token.address, false)
-  const value = new BigNumber(tokenAmount.toExact()).times(DEFAULT_TOKEN_DECIMAL).toString()
+  const contract = useSnacksTokenContract(tokenAmount?.token?.address, false)
+  const value = new BigNumber(tokenAmount?.toExact()).times(DEFAULT_TOKEN_DECIMAL).toString()
 
   const inputs = [value]
   const requireAmount = useSingleCallResult(contract, 'calculateRedeemAmount', inputs).result

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { CurrencyAmount, JSBI, Token, Trade, TokenAmount } from '@zoinks-swap/sdk'
-import { Button, Box } from '@zoinks-swap/uikit'
+import { Button, Box, Text } from '@zoinks-swap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import tokens from 'config/constants/tokens'
 import Column, { AutoColumn } from '../../components/Layout/Column'
@@ -14,6 +14,7 @@ import { useSnacksBuyBackInfo, useSwapActionHandlers, useSwapState, tryParseAmou
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import useSnacksMint from './hooks/useSnacksMint'
+import { LightCard } from '../../components/Card'
 
 export default function SnacksBuyBackCard() {
   const { t } = useTranslation()
@@ -28,7 +29,7 @@ export default function SnacksBuyBackCard() {
     currencyBalances,
     redeemAmount,
     inputError: swapInputError,
-  } = useSnacksBuyBackInfo(parsedTokenAmount, tokens.snacks)
+  } = useSnacksBuyBackInfo(parsedTokenAmount, tokens.cake)
 
   const isValid = !swapInputError
 
@@ -97,11 +98,19 @@ export default function SnacksBuyBackCard() {
                   width="100%"
                   disabled={!isValid}
                 >
-                  {t('Swap')}
+                  {t('Claim')}
                 </Button>
               )}
             </Box>
           </Wrapper>
+          <LightCard>
+            <Text fontSize="14px" style={{ textAlign: 'center' }}>
+              <span role="img" aria-label="pancake-icon">
+                🥞
+              </span>{' '}
+              {t('You can only claim WHOLE snacks not partial. There are 10% claim fees')}
+            </Text>
+          </LightCard>
         </AppBody>
       </StyledInputCurrencyWrapper>
     </StyledSwapContainer>

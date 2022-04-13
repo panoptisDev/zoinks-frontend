@@ -61,7 +61,7 @@ const Home: React.FC = () => {
   const { theme } = useTheme()
   const { account } = useWeb3React()
 
-  const HomeSectionContainerStyles = { margin: '0', width: '100%', maxWidth: '968px' }
+  const HomeSectionContainerStyles = { margin: '0', padding: '100px', width: '100%', maxWidth: '100%' }
 
   return (
     <>
@@ -109,24 +109,10 @@ const Home: React.FC = () => {
         </OuterWedgeWrapper>
         <SalesSection {...swapSectionData} />
       </PageSection> */}
-      <PageSection
-        innerProps={{ style: HomeSectionContainerStyles }}
-        index={2}
-        hasCurvedDivider={false}
-      >
+      <PageSection innerProps={{ style: HomeSectionContainerStyles }} index={2} hasCurvedDivider={false}>
         <SalesSection {...earnSectionData} />
         {/* <FarmsPoolsRow /> */}
       </PageSection>
-
-      {/* <PageSection
-        innerProps={{ style: HomeSectionContainerStyles }}
-        background={theme.colors.background}
-        index={2}
-        hasCurvedDivider={false}
-      >
-        <SalesSection {...cakeSectionData} />
-        <CakeDataRow />
-      </PageSection> */}
     </>
   )
 }

@@ -103,3 +103,6 @@ export const getBtcSnacksAddress = () => {
 export const getEthSnacksAddress = () => {
   return getAddress(addresses.ethsnacks)
 }
+export const getPulseAddress = () => {
+  return getAddress(addresses.pulse)
+}

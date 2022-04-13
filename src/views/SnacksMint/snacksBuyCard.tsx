@@ -21,6 +21,7 @@ import CircleLoader from '../../components/Loader/CircleLoader'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import useSnacksMint from './hooks/useSnacksMint'
+import { LightCard } from '../../components/Card'
 
 export default function SnacksBuyCard() {
   const { t } = useTranslation()
@@ -144,7 +145,7 @@ export default function SnacksBuyCard() {
                     id="swap-button"
                     disabled={!isValid || approval !== ApprovalState.APPROVED}
                   >
-                    {t('Swap')}
+                    {t('Mint')}
                   </Button>
                 </RowBetween>
               ) : (
@@ -157,7 +158,7 @@ export default function SnacksBuyCard() {
                   width="100%"
                   disabled={!isValid}
                 >
-                  {t('Swap')}
+                  {t('Mint')}
                 </Button>
               )}
               {showApproveFlow && (
@@ -167,6 +168,14 @@ export default function SnacksBuyCard() {
               )}
             </Box>
           </Wrapper>
+          <LightCard>
+            <Text fontSize="14px" style={{ textAlign: 'center' }}>
+              <span role="img" aria-label="pancake-icon">
+                🥞
+              </span>{' '}
+              {t('You can only mint WHOLE snacks not partial. There are 5% mint fees')}
+            </Text>
+          </LightCard>
         </AppBody>
       </StyledInputCurrencyWrapper>
     </StyledSwapContainer>

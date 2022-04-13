@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { CurrencyAmount, JSBI, Token, Trade, TokenAmount } from '@zoinks-swap/sdk'
-import { Button, Box } from '@zoinks-swap/uikit'
+import { Button, Box, Text } from '@zoinks-swap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import tokens from 'config/constants/tokens'
 import Column, { AutoColumn } from '../../components/Layout/Column'
@@ -14,6 +14,7 @@ import { useSnacksBuyBackInfo, useSwapActionHandlers, useSwapState, tryParseAmou
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import useEthSnacksMint from './hooks/useEthSnacksMint'
+import { LightCard } from '../../components/Card'
 
 export default function EthSnacksBuyBackCard() {
   const { t } = useTranslation()
@@ -97,11 +98,19 @@ export default function EthSnacksBuyBackCard() {
                   width="100%"
                   disabled={!isValid}
                 >
-                  {t('Swap')}
+                  {t('Claim')}
                 </Button>
               )}
             </Box>
           </Wrapper>
+          <LightCard>
+            <Text fontSize="14px" style={{ textAlign: 'center' }}>
+              <span role="img" aria-label="pancake-icon">
+                🥞
+              </span>{' '}
+              {t('You can only claim WHOLE ethsnacks not partial. There are 10% claim fees')}
+            </Text>
+          </LightCard>
         </AppBody>
       </StyledInputCurrencyWrapper>
     </StyledSwapContainer>

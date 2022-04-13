@@ -19,6 +19,7 @@ import CircleLoader from '../../components/Loader/CircleLoader'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import useEthSnacksMint from './hooks/useEthSnacksMint'
+import { LightCard } from '../../components/Card'
 
 export default function EthSnacksBuyCard() {
   const { t } = useTranslation()
@@ -139,7 +140,7 @@ export default function EthSnacksBuyCard() {
                     id="swap-button"
                     disabled={!isValid || approval !== ApprovalState.APPROVED}
                   >
-                    {t('Swap')}
+                    {t('Mint')}
                   </Button>
                 </RowBetween>
               ) : (
@@ -152,7 +153,7 @@ export default function EthSnacksBuyCard() {
                   width="100%"
                   disabled={!isValid}
                 >
-                  {t('Swap')}
+                  {t('Mint')}
                 </Button>
               )}
               {showApproveFlow && (
@@ -162,6 +163,14 @@ export default function EthSnacksBuyCard() {
               )}
             </Box>
           </Wrapper>
+          <LightCard>
+            <Text fontSize="14px" style={{ textAlign: 'center' }}>
+              <span role="img" aria-label="pancake-icon">
+                🥞
+              </span>{' '}
+              {t('You can only mint WHOLE ethsnacks not partial. There are 5% mint fees')}
+            </Text>
+          </LightCard>
         </AppBody>
       </StyledInputCurrencyWrapper>
     </StyledSwapContainer>

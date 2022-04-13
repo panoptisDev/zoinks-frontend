@@ -316,10 +316,9 @@ export function useSnacksBuyBackInfo(
   // const outputCurrency = useCurrency(outputCurrencyId)
 
   const redeemAmount = useSnacksBuyBackAmount(tokenAmount, outputToken)
-  console.log(tokenAmount.token)
-  console.log(outputToken)
+
   const relevantTokenBalances = useTokenBalances(account ?? undefined, [
-    tokenAmount.token ?? undefined,
+    tokenAmount?.token ?? undefined,
     outputToken ?? undefined,
   ])
 
@@ -343,8 +342,7 @@ export function useSnacksBuyBackInfo(
   if (balanceIn && amountIn && balanceIn.lessThan(amountIn)) {
     inputError = t('Insufficient %symbol% balance', { symbol: amountIn.currency.symbol })
   }
-  console.log(relevantTokenBalances)
-  console.log(amountIn?.toExact())
+
   return {
     currencyBalances,
     redeemAmount,
