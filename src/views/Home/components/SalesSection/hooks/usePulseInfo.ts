@@ -48,6 +48,9 @@ export function usePulseInfo() {
     new TokenAmount(tokens.snacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
     tokens.cake,
   )
+  const zoinksAmount = tryParseAmount('1', tokens.cake)
+  const zoinksPrice = useTradeExactIn(zoinksAmount, tokens.busd)
+
   const ethsnacksPrice = useSnacksBuyAmount(
     new TokenAmount(tokens.ethsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
     tokens.weth,
@@ -60,7 +63,7 @@ export function usePulseInfo() {
   return {
     nextPulsePartAmount: bestTradePartExactIn,
     nextPulseTotalAmount: bestTradeTotalExactIn,
-    snacksPrice,
+    snacksPrice: parseFloat(snacksPrice?.toExact() ?? '0') * parseFloat(zoinksPrice?.outputAmount?.toExact() ?? '0'),
     ethsnacksPrice,
     btcsnacksPrice,
   }

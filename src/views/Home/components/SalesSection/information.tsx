@@ -20,14 +20,13 @@ const Informations = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft())
-    }, 1000)
+    }, 10000)
   })
 
   function calculateTimeLeft() {
-    const utcTime = new Date()
-    const nextPulseTime = utcTime.setHours(1, 0, 0)
-
-    let difference = nextPulseTime - new Date().getTime()
+    const nextPulseTime = new Date()
+    nextPulseTime.setUTCHours(1, 0, 0)
+    let difference = nextPulseTime.getTime() - new Date().getTime()
 
     if (difference < 0) difference += 12 * 60 * 60 * 1000
     if (difference < 0) difference += 12 * 60 * 60 * 1000
@@ -48,11 +47,11 @@ const Informations = () => {
     <>
       <TimerLabelWrapper>
         <div>
-          Next Pulse: {timeLeft.hours.toString()} hours: {timeLeft.minutes} minutes: {timeLeft.seconds} seconds
+          Next Pulse: {timeLeft.hours} hours {timeLeft.minutes} minutes {timeLeft.seconds} seconds
         </div>
         <div>Next Pulse Amount : $ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</div>
         <div>TVL : $ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
-        <div>Snacks Price: {snacksPrice?.toExact()}</div>
+        <div>Snacks Price: $ {snacksPrice.toFixed(6)}</div>
         <div>EthSnacks Price: {ethsnacksPrice?.toExact()}</div>
         <div>BtcSnacks Price: {btcsnacksPrice?.toExact()}</div>
       </TimerLabelWrapper>
