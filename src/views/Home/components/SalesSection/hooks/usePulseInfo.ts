@@ -9,7 +9,7 @@ import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { getPulseAddress } from 'utils/addressHelpers'
 import { useSnacksBuyBackInfo, tryParseAmount } from 'state/swap/hooks'
 import { useSnacksBuyAmount } from 'hooks/useSnacksTrade'
-import { ethers } from 'ethers'
+import { useBtcUSDPrice, useEthUSDPrice } from 'utils/calls/usdPrice'
 
 // from the current swap inputs, compute the best trade and return it.
 export function usePulseInfo() {
@@ -55,16 +55,19 @@ export function usePulseInfo() {
     new TokenAmount(tokens.ethsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
     tokens.weth,
   )
+  const ethusdPrice = useEthUSDPrice()
+
   const btcsnacksPrice = useSnacksBuyAmount(
     new TokenAmount(tokens.btcsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
     tokens.wbtc,
   )
+  const btcusdPrice = useBtcUSDPrice()
 
   return {
     nextPulsePartAmount: bestTradePartExactIn,
     nextPulseTotalAmount: bestTradeTotalExactIn,
     snacksPrice: parseFloat(snacksPrice?.toExact() ?? '0') * parseFloat(zoinksPrice?.outputAmount?.toExact() ?? '0'),
-    ethsnacksPrice,
-    btcsnacksPrice,
+    ethsnacksPrice: parseFloat(ethsnacksPrice?.toExact() ?? '0') * ethusdPrice,
+    btcsnacksPrice: parseFloat(btcsnacksPrice?.toExact() ?? '0') * btcusdPrice,
   }
 }

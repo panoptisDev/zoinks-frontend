@@ -50,10 +50,10 @@ const Informations = () => {
           Next Pulse: {timeLeft.hours} hours {timeLeft.minutes} minutes {timeLeft.seconds} seconds
         </div>
         <div>Next Pulse Amount : $ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</div>
-        <div>TVL : $ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
+        <div>TOTAL LOCKED: $ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
         <div>Snacks Price: $ {snacksPrice.toFixed(6)}</div>
-        <div>EthSnacks Price: {ethsnacksPrice?.toExact()}</div>
-        <div>BtcSnacks Price: {btcsnacksPrice?.toExact()}</div>
+        <div>EthSnacks Price: $ {ethsnacksPrice.toFixed(6)}</div>
+        <div>BtcSnacks Price: $ {btcsnacksPrice.toFixed(6)}</div>
       </TimerLabelWrapper>
     </>
   )

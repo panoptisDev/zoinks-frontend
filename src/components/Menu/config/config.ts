@@ -60,19 +60,6 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
       },
     ],
   },
-  {
-    label: '',
-    href: '/more',
-    icon: 'More',
-    hideSubNav: true,
-    items: [
-      {
-        label: t('Github'),
-        href: 'https://github.com/zoinksDAO',
-        type: DropdownMenuItemType.EXTERNAL_LINK,
-      },
-    ],
-  },
   // {
   //   label: t('Win'),
   //   href: '/prediction',
