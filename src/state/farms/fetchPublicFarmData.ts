@@ -71,7 +71,7 @@ const fetchFarm = async (farm: SerializedFarm): Promise<PublicFarmData> => {
   const lpTotalInQuoteToken = quoteTokenAmountMc.times(new BigNumber(2))
 
   // Only make masterchef calls if farm has pid
-  const [info, totalAllocPoint] =
+  const [info] =
     pid || pid === 0
       ? await multicall(masterchefABI, [
           {
@@ -79,22 +79,17 @@ const fetchFarm = async (farm: SerializedFarm): Promise<PublicFarmData> => {
             name: 'poolInfo',
             params: [pid],
           },
-          {
-            address: getMasterChefAddress(),
-            name: 'totalAllocPoint',
-          },
         ])
-      : [null, null]
+      : [null]
 
   const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
-  const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
-
+  // const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
   return {
     tokenAmountTotal: tokenAmountTotal.toJSON(),
     lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
     lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
     tokenPriceVsQuote: quoteTokenAmountTotal.div(tokenAmountTotal).toJSON(),
-    poolWeight: poolWeight.toJSON(),
+    poolWeight: BIG_ZERO.toJSON(),
     multiplier: `${allocPoint.div(100).toString()}X`,
   }
 }

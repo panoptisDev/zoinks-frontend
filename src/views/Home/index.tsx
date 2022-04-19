@@ -6,14 +6,11 @@ import { useWeb3React } from '@web3-react/core'
 import useTheme from 'hooks/useTheme'
 import Container from 'components/Layout/Container'
 import { PageMeta } from 'components/Layout/Page'
-import Hero from './components/Hero'
 import { earnSectionData } from './components/SalesSection/data'
-import MetricsSection from './components/MetricsSection'
 import SalesSection from './components/SalesSection'
-import FarmsPoolsRow from './components/FarmsPoolsRow'
-import { InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
-import UserBanner from './components/UserBanner'
 import FarmAuctionsBanner from './components/Banners/FarmAuctionsBanner'
+import { useFetchPublicPoolsData } from '../../state/pools/hooks'
+import { usePollFarmsPublicData } from '../../state/farms/hooks'
 
 const showBanner = false
 
@@ -60,6 +57,9 @@ const UserBannerWrapper = styled(Container)`
 const Home: React.FC = () => {
   const { theme } = useTheme()
   const { account } = useWeb3React()
+
+  usePollFarmsPublicData()
+  useFetchPublicPoolsData()
 
   const HomeSectionContainerStyles = { margin: '0', padding: '100px', width: '100%', maxWidth: '100%' }
 

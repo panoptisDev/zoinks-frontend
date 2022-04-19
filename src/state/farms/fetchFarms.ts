@@ -5,6 +5,7 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[]) => {
   const data = await Promise.all(
     farmsToFetch.map(async (farmConfig) => {
       const farm = await fetchFarm(farmConfig)
+      console.log(farm)
       const serializedFarm = { ...farm, token: farm.token, quoteToken: farm.quoteToken }
       return serializedFarm
     }),

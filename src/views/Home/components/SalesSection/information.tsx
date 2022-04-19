@@ -41,7 +41,8 @@ const Informations = () => {
     return remainTime
   }
 
-  const { nextPulsePartAmount, nextPulseTotalAmount, snacksPrice, ethsnacksPrice, btcsnacksPrice } = usePulseInfo()
+  const { nextPulsePartAmount, nextPulseTotalAmount, snacksPrice, ethsnacksPrice, btcsnacksPrice, totalStakedUSD } =
+    usePulseInfo()
 
   return (
     <>
@@ -51,6 +52,7 @@ const Informations = () => {
         </div>
         <div>Next Pulse Amount : $ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</div>
         <div>TOTAL LOCKED: $ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
+        <div>TVL: $ {totalStakedUSD.toFixed(6)}</div>
         <div>Snacks Price: $ {snacksPrice.toFixed(6)}</div>
         <div>EthSnacks Price: $ {ethsnacksPrice.toFixed(6)}</div>
         <div>BtcSnacks Price: $ {btcsnacksPrice.toFixed(6)}</div>
