@@ -22,7 +22,9 @@ const Footer = () => {
   return (
     <Wrapper>
       <Flex alignItems="center" justifyContent="end" mb="24px">
-        <LinkExternal id="ercBridge" href="https://docs.binance.org/smart-chain/guides/cross-chain.html">{t('Convert ERC-20 to BEP-20')}</LinkExternal>
+        <LinkExternal id="ercBridge" href="https://docs.binance.org/smart-chain/guides/cross-chain.html">
+          {t('Convert ERC-20 to BEP-20')}
+        </LinkExternal>
       </Flex>
     </Wrapper>
   )
