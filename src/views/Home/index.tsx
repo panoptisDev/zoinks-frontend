@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   usePollFarmsPublicData()
   useFetchPublicPoolsData()
 
-  const HomeSectionContainerStyles = { margin: '0', padding: '100px', width: '100%', maxWidth: '100%' }
+  const HomeSectionContainerStyles = { margin: '0', padding: '5%', width: '100%', maxWidth: '100%' }
 
   return (
     <>

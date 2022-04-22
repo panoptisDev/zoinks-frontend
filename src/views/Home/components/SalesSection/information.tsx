@@ -4,7 +4,7 @@ import { usePulseInfo } from './hooks/usePulseInfo'
 
 const TimerLabelWrapper = styled.div`
   order: 3;
-  width: 100px;
+  width: 100%;
   color: white;
   font-size: 20px;
 
@@ -48,7 +48,7 @@ const Informations = () => {
     <>
       <TimerLabelWrapper>
         <div>
-          Next Pulse: {timeLeft.hours} hours {timeLeft.minutes} minutes {timeLeft.seconds} seconds
+          Next Pulse: {timeLeft.hours} hrs {timeLeft.minutes} mins {timeLeft.seconds} secs
         </div>
         <div>Next Pulse Amount : $ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</div>
         <div>TOTAL LOCKED: $ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>

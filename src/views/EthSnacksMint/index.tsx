@@ -6,27 +6,10 @@ import Page from '../Page'
 import EthSnacksBuyCard from './ethsnacksBuyCard'
 import EthSnacksBuyBackCard from './ethsnacksBuyBackCard'
 
-const Label = styled(Text)`
-  font-size: 12px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
-`
-
-const SwitchIconButton = styled(IconButton)`
-  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
-  .icon-up-down {
-    display: none;
-  }
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
-    .icon-down {
-      display: none;
-      fill: white;
-    }
-    .icon-up-down {
-      display: block;
-      fill: white;
-    }
+const StyledFlex = styled(Flex)`
+  flex-direction: row;
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
   }
 `
 
@@ -34,10 +17,10 @@ export default function EthSnacksMint({ history }: RouteComponentProps) {
   return (
     <Page>
       <Flex width="100%" justifyContent="center" position="relative">
-        <Flex flexDirection="row">
+        <StyledFlex>
           <EthSnacksBuyCard />
           <EthSnacksBuyBackCard />
-        </Flex>
+        </StyledFlex>
       </Flex>
     </Page>
   )
