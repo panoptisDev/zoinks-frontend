@@ -61,7 +61,7 @@ export default function SnacksBuyBackCard() {
     <StyledSwapContainer $isChartExpanded={false}>
       <StyledInputCurrencyWrapper>
         <AppBody>
-          <CurrencyInputHeader title={t('BtcSnacks Buy Back')} subtitle={t('Redeem Snacks in an instant')} />
+          <CurrencyInputHeader title={t('BtcSnacks Buy Back')} subtitle={t('Redeem BtcSnacks in an instant')} />
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
               <CurrencyInputPanel
