@@ -1,16 +1,11 @@
 import { useState } from 'react'
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@zoinks-swap/sdk'
-import { parseUnits } from '@ethersproject/units'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useCurrency } from 'hooks/Tokens'
 import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
 import { useTokenBalances, useCurrencyBalances } from 'state/wallet/hooks'
 import tokens from 'config/constants/tokens'
-import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { getPulseAddress } from 'utils/addressHelpers'
 import { useSnacksBuyBackInfo, tryParseAmount } from 'state/swap/hooks'
 import { useSnacksBuyAmount, useSnacksBuyBackAmount } from 'hooks/useSnacksTrade'
-import { useBtcUSDPrice, useEthUSDPrice } from 'utils/calls/usdPrice'
 import { usePools } from 'state/pools/hooks'
 import { useFarmFromPid } from 'state/farms/hooks'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
@@ -49,24 +44,8 @@ export function usePulseInfo() {
   const bestTradePartExactIn = useTradeExactIn(parsedPartAmount, tokens.busd)
   const bestTradeTotalExactIn = useTradeExactIn(parsedTotalAmount, tokens.busd)
 
-  const snacksPrice = useSnacksBuyAmount(
-    new TokenAmount(tokens.snacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
-    tokens.cake,
-  )
   const zoinksAmount = tryParseAmount('1', tokens.cake)
   const zoinksPrice = useTradeExactIn(zoinksAmount, tokens.busd)
-
-  const ethsnacksPrice = useSnacksBuyAmount(
-    new TokenAmount(tokens.ethsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
-    tokens.weth,
-  )
-  const ethusdPrice = useEthUSDPrice()
-
-  const btcsnacksPrice = useSnacksBuyAmount(
-    new TokenAmount(tokens.btcsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
-    tokens.wbtc,
-  )
-  const btcusdPrice = useBtcUSDPrice()
 
   // TVL
   const zoinksBusdFarm = useFarmFromPid(1)
@@ -92,9 +71,6 @@ export function usePulseInfo() {
   return {
     nextPulsePartAmount: bestTradePartExactIn,
     nextPulseTotalAmount: bestTradeTotalExactIn,
-    snacksPrice: parseFloat(snacksPrice?.toExact() ?? '0') * parseFloat(zoinksPrice?.outputAmount?.toExact() ?? '0'),
-    ethsnacksPrice: parseFloat(ethsnacksPrice?.toExact() ?? '0') * ethusdPrice,
-    btcsnacksPrice: parseFloat(btcsnacksPrice?.toExact() ?? '0') * btcusdPrice,
     totalStakedUSD,
   }
 }

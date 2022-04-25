@@ -27,6 +27,9 @@ const noAccountFarmConfig = farmsConfig.map((farm) => ({
     tokenBalance: '0',
     stakedBalance: '0',
     earnings: '0',
+    snacksEarnings: '0',
+    ethSnacksEarnings: '0',
+    btcSnacksEarnings: '0',
   },
 }))
 
@@ -81,6 +84,9 @@ interface FarmUserDataResponse {
   tokenBalance: string
   stakedBalance: string
   earnings: string
+  snacksEarnings: string
+  ethSnacksEarnings: string
+  btcSnacksEarnings: string
 }
 
 export const fetchFarmUserDataAsync = createAsyncThunk<
@@ -104,7 +110,10 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
         allowance: userFarmAllowances[index],
         tokenBalance: userFarmTokenBalances[index],
         stakedBalance: userStakedBalances[index],
-        earnings: userFarmEarnings[index],
+        earnings: userFarmEarnings[index].zoinks,
+        snacksEarnings: userFarmEarnings[index].snacks,
+        ethSnacksEarnings: userFarmEarnings[index].ethsnacks,
+        btcSnacksEarnings: userFarmEarnings[index].btcsnacks,
       }
     })
   },

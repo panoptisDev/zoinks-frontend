@@ -29,6 +29,9 @@ interface SerializedFarmUserData {
   tokenBalance: string
   stakedBalance: string
   earnings: string
+  snacksEarnings: string
+  ethSnacksEarnings: string
+  btcSnacksEarnings: string
 }
 
 export interface DeserializedFarmUserData {
@@ -36,6 +39,9 @@ export interface DeserializedFarmUserData {
   tokenBalance: BigNumber
   stakedBalance: BigNumber
   earnings: BigNumber
+  snacksEarnings: BigNumber
+  ethSnacksEarnings: BigNumber
+  btcSnacksEarnings: BigNumber
 }
 
 export interface SerializedFarm extends SerializedFarmConfig {

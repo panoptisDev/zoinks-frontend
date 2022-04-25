@@ -49,11 +49,30 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
   })
 
   const rawStakedBalances = await multicall(masterchefABI, calls)
+
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance) => {
     return new BigNumber(stakedBalance[0]._hex).toJSON()
   })
   return parsedStakedBalances
 }
+
+// export const fetchFarmUserEarnings = async (account: string, farmsToFetch: SerializedFarmConfig[]) => {
+//   const masterChefAddress = getMasterChefAddress()
+
+//   const calls = farmsToFetch.map((farm) => {
+//     return {
+//       address: masterChefAddress,
+//       name: 'pendingCake',
+//       params: [farm.pid, account],
+//     }
+//   })
+
+//   const rawEarnings = await multicall(masterchefABI, calls)
+//   const parsedEarnings = rawEarnings.map((earnings) => {
+//     return new BigNumber(earnings).toJSON()
+//   })
+//   return parsedEarnings
+// }
 
 export const fetchFarmUserEarnings = async (account: string, farmsToFetch: SerializedFarmConfig[]) => {
   const masterChefAddress = getMasterChefAddress()
@@ -61,14 +80,20 @@ export const fetchFarmUserEarnings = async (account: string, farmsToFetch: Seria
   const calls = farmsToFetch.map((farm) => {
     return {
       address: masterChefAddress,
-      name: 'pendingCake',
+      name: 'userInfo',
       params: [farm.pid, account],
     }
   })
 
-  const rawEarnings = await multicall(masterchefABI, calls)
-  const parsedEarnings = rawEarnings.map((earnings) => {
-    return new BigNumber(earnings).toJSON()
+  const userInfos = await multicall(masterchefABI, calls)
+
+  const parsedEarnings = userInfos.map((userInfo) => {
+    return {
+      zoinks: new BigNumber(userInfo[1]._hex).toJSON(),
+      snacks: new BigNumber(userInfo[2]._hex).toJSON(),
+      ethsnacks: new BigNumber(userInfo[3]._hex).toJSON(),
+      btcsnacks: new BigNumber(userInfo[4]._hex).toJSON(),
+    }
   })
   return parsedEarnings
 }

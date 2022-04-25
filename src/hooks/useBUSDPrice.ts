@@ -1,6 +1,11 @@
-import { ChainId, Currency, currencyEquals, JSBI, Price } from '@zoinks-swap/sdk'
+import { ChainId, Currency, currencyEquals, JSBI, Price, TokenAmount } from '@zoinks-swap/sdk'
+import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import tokens, { mainnetTokens } from 'config/constants/tokens'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
+import { useSnacksBuyAmount, useSnacksBuyBackAmount } from 'hooks/useSnacksTrade'
+import { useBtcUSDPrice, useEthUSDPrice } from 'utils/calls/usdPrice'
+import { useSnacksBuyBackInfo, tryParseAmount } from 'state/swap/hooks'
 import { useMemo } from 'react'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
@@ -96,4 +101,32 @@ export const useBUSDCakeAmount = (amount: number): number | undefined => {
 export const useBNBBusdPrice = (): Price | undefined => {
   const bnbBusdPrice = useBUSDPrice(tokens.wbnb)
   return bnbBusdPrice
+}
+
+// from the current swap inputs, compute the best trade and return it.
+export function useSnacksPrice() {
+  const snacksPrice = useSnacksBuyAmount(
+    new TokenAmount(tokens.snacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
+    tokens.cake,
+  )
+  const zoinksAmount = tryParseAmount('1', tokens.cake)
+  const zoinksPrice = useTradeExactIn(zoinksAmount, tokens.busd)
+
+  const ethsnacksPrice = useSnacksBuyAmount(
+    new TokenAmount(tokens.ethsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
+    tokens.weth,
+  )
+  const ethusdPrice = useEthUSDPrice()
+
+  const btcsnacksPrice = useSnacksBuyAmount(
+    new TokenAmount(tokens.btcsnacks, JSBI.BigInt(DEFAULT_TOKEN_DECIMAL)),
+    tokens.wbtc,
+  )
+  const btcusdPrice = useBtcUSDPrice()
+
+  return {
+    snacksPrice: parseFloat(snacksPrice?.toExact() ?? '0') * parseFloat(zoinksPrice?.outputAmount?.toExact() ?? '0'),
+    ethsnacksPrice: parseFloat(ethsnacksPrice?.toExact() ?? '0') * ethusdPrice,
+    btcsnacksPrice: parseFloat(btcsnacksPrice?.toExact() ?? '0') * btcusdPrice,
+  }
 }

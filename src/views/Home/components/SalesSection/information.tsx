@@ -1,3 +1,4 @@
+import { useSnacksPrice } from 'hooks/useBUSDPrice'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { usePulseInfo } from './hooks/usePulseInfo'
@@ -41,8 +42,9 @@ const Informations = () => {
     return remainTime
   }
 
-  const { nextPulsePartAmount, nextPulseTotalAmount, snacksPrice, ethsnacksPrice, btcsnacksPrice, totalStakedUSD } =
-    usePulseInfo()
+  const { nextPulsePartAmount, nextPulseTotalAmount, totalStakedUSD } = usePulseInfo()
+
+  const { snacksPrice, ethsnacksPrice, btcsnacksPrice } = useSnacksPrice()
 
   return (
     <>
