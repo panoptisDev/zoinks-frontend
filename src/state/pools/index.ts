@@ -25,6 +25,7 @@ import {
   fetchUserBalances,
   fetchUserPendingRewards,
   fetchUserStakeBalances,
+  fetchUserInfos,
 } from './fetchPoolsUser'
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
@@ -134,7 +135,6 @@ export const fetchPoolsPublicDataAsync = () => async (dispatch, getState) => {
     const earningTokenAddress = pool.earningToken.address ? pool.earningToken.address.toLowerCase() : null
     const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
 
-    console.log(isPoolFinished);
     const apr = !isPoolFinished
       ? getPoolApr(
           stakingTokenPrice,
@@ -185,13 +185,14 @@ export const fetchPoolsUserDataAsync =
     const stakingTokenBalances = await fetchUserBalances(account)
     const stakedBalances = await fetchUserStakeBalances(account)
     const pendingRewards = await fetchUserPendingRewards(account)
-
+    const userInfos = await fetchUserInfos(account)
     const userData = poolsConfig.map((pool) => ({
       sousId: pool.sousId,
       allowance: allowances[pool.sousId],
       stakingTokenBalance: stakingTokenBalances[pool.sousId],
       stakedBalance: stakedBalances[pool.sousId],
       pendingReward: pendingRewards[pool.sousId],
+      userInfo: userInfos[pool.sousId] ? userInfos[pool.sousId] : undefined,
     }))
 
     dispatch(setPoolsUserData(userData))
@@ -223,6 +224,13 @@ export const updateUserPendingReward =
   async (dispatch) => {
     const pendingRewards = await fetchUserPendingRewards(account)
     dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
+  }
+
+export const updateUserInfos =
+  (sousId: number, account: string): AppThunk =>
+  async (dispatch) => {
+    const userInfos = await fetchUserInfos(account)
+    dispatch(updatePoolsUserData({ sousId, field: 'userInfo', value: userInfos[sousId] }))
   }
 
 export const fetchCakeVaultPublicData = createAsyncThunk<CakeVault>('cakeVault/fetchPublicData', async () => {

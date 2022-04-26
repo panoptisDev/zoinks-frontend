@@ -36,6 +36,8 @@ import {
   getSnacksAddress,
   getEthSnacksAddress,
   getBtcSnacksAddress,
+  getZoinksPoolAddress,
+  getSnacksPoolAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -76,6 +78,8 @@ import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
 import zoinksAbi from 'config/abi/zoinksContract.json'
 import snacksAbi from 'config/abi/snacksContract.json'
+import zoinksPoolAbi from 'config/abi/zoinksPool.json'
+import snacksPoolAbi from 'config/abi/snacksPool.json'
 import { ChainLinkOracleContract, FarmAuctionContract, PancakeProfileContract, PredictionsContract } from './types'
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
@@ -202,4 +206,10 @@ export const getBtcSnacksContract = (signer?: ethers.Signer | ethers.providers.P
 }
 export const getEthSnacksContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(snacksAbi, getEthSnacksAddress(), signer)
+}
+export const getZoinksPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(zoinksPoolAbi, getZoinksPoolAddress(), signer)
+}
+export const getSnacksPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(snacksPoolAbi, getSnacksPoolAddress(), signer)
 }

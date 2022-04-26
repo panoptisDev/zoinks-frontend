@@ -2,16 +2,21 @@ import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
-import { getMasterchefContract } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
 import { simpleRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
+
+import { getMasterchefContract, getZoinksPoolContract, getSnacksPoolContract } from 'utils/contractHelpers'
+
+const zoinksPoolContract = getZoinksPoolContract()
+const snacksPoolContract = getSnacksPoolContract()
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
 const nonBnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((pool) => pool.sousId >= 0)
+const defaultPools = poolsConfig.filter((pool) => pool.sousId >= 0 && pool.sousId <= 1)
 const masterChefContract = getMasterchefContract()
 
 export const fetchPoolsAllowance = async (account) => {
@@ -91,4 +96,27 @@ export const fetchUserPendingRewards = async (account) => {
   // const pendingReward = await masterChefContract.pendingCake('0', account)
 
   return { ...pendingRewards /* , 0: new BigNumber(pendingReward.toString()).toJSON() */ }
+}
+
+export const fetchUserInfos = async (account) => {
+  const zoinksContractResponse = await zoinksPoolContract.userInfo(account)
+  const snacksContractResponse = await snacksPoolContract.userInfo(account)
+
+  const userInfos = {
+    0: {
+      amount: new BigNumber(zoinksContractResponse.amount._hex).toJSON(),
+      rewardDebt: new BigNumber(zoinksContractResponse.rewardDebt._hex).toJSON(),
+      rewardDebtSnacks: new BigNumber(zoinksContractResponse.rewardDebtSnacks._hex).toJSON(),
+      lastWithdrawDate: new BigNumber(zoinksContractResponse.lastWithdrawDate._hex).toJSON(),
+    },
+    1: {
+      amount: new BigNumber(snacksContractResponse.amount._hex).toJSON(),
+      rewardDebt: new BigNumber(snacksContractResponse.rewardDebt._hex).toJSON(),
+      rewardDebtBtcSnacks: new BigNumber(snacksContractResponse.rewardDebtBtcSnacks._hex).toJSON(),
+      rewardDebtEthSnacks: new BigNumber(snacksContractResponse.rewardDebtEthSnacks._hex).toJSON(),
+      lastWithdrawDate: new BigNumber(snacksContractResponse.lastWithdrawDate._hex).toJSON(),
+    },
+  }
+
+  return userInfos
 }

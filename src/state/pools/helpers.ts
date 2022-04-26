@@ -10,6 +10,14 @@ type UserData =
       stakingTokenBalance: number | string
       stakedBalance: number | string
       pendingReward: number | string
+      userInfo?: {
+        amount: number | string
+        rewardDebt: number | string
+        rewardDebtSnacks?: number | string
+        rewardDebtEthSnacks?: number | string
+        rewardDebtBtcSnacks?: number | string
+        lastWithdrawDate: number | string
+      }
     }
 
 export const transformUserData = (userData: UserData) => {
@@ -18,6 +26,28 @@ export const transformUserData = (userData: UserData) => {
     stakingTokenBalance: userData ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO,
     stakedBalance: userData ? new BigNumber(userData.stakedBalance) : BIG_ZERO,
     pendingReward: userData ? new BigNumber(userData.pendingReward) : BIG_ZERO,
+    userInfo: userData
+      ? {
+          amount: userData.userInfo?.amount ? new BigNumber(userData.userInfo.amount) : BIG_ZERO,
+          rewardDebt: userData.userInfo?.rewardDebt ? new BigNumber(userData.userInfo.rewardDebt) : BIG_ZERO,
+          rewardDebtSnacks: userData.userInfo?.rewardDebtSnacks
+            ? new BigNumber(userData.userInfo.rewardDebtSnacks)
+            : BIG_ZERO,
+          rewardDebtEthSnacks: userData.userInfo?.rewardDebtEthSnacks
+            ? new BigNumber(userData.userInfo.rewardDebtEthSnacks)
+            : BIG_ZERO,
+          rewardDebtBtcSnacks: userData.userInfo?.rewardDebtBtcSnacks
+            ? new BigNumber(userData.userInfo.rewardDebtBtcSnacks)
+            : BIG_ZERO,
+          lastWithdrawDate: userData.userInfo?.lastWithdrawDate
+            ? new BigNumber(userData.userInfo.lastWithdrawDate)
+            : BIG_ZERO,
+        }
+      : {
+          amount: BIG_ZERO,
+          rewardDebt: BIG_ZERO,
+          lastWithdrawDate: BIG_ZERO,
+        },
   }
 }
 

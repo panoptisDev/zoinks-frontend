@@ -89,6 +89,14 @@ export interface DeserializedPool extends DeserializedPoolConfig, CorePoolProps 
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    userInfo?: {
+      amount: BigNumber
+      rewardDebt: BigNumber
+      rewardDebtSnacks?: BigNumber
+      rewardDebtEthSnacks?: BigNumber
+      rewardDebtBtcSnacks?: BigNumber
+      lastWithdrawDate: BigNumber
+    }
   }
 }
 
@@ -100,6 +108,14 @@ export interface SerializedPool extends SerializedPoolConfig, CorePoolProps {
     stakingTokenBalance: SerializedBigNumber
     stakedBalance: SerializedBigNumber
     pendingReward: SerializedBigNumber
+    userInfo?: {
+      amount: SerializedBigNumber
+      rewardDebt: SerializedBigNumber
+      rewardDebtSnacks?: SerializedBigNumber
+      rewardDebtEthSnacks?: SerializedBigNumber
+      rewardDebtBtcSnacks?: SerializedBigNumber
+      lastWithdrawDate: SerializedBigNumber
+    }
   }
 }
 

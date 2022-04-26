@@ -106,3 +106,9 @@ export const getEthSnacksAddress = () => {
 export const getPulseAddress = () => {
   return getAddress(addresses.pulse)
 }
+export const getZoinksPoolAddress = () => {
+  return getAddress(addresses.zoinksPool)
+}
+export const getSnacksPoolAddress = () => {
+  return getAddress(addresses.snacksPool)
+}

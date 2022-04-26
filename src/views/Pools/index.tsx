@@ -29,6 +29,8 @@ import { usePoolsWithVault } from 'views/Home/hooks/useGetTopPoolsByApr'
 import { BIG_ZERO } from 'utils/bigNumber'
 import Loading from 'components/Loading'
 import PoolCard from './components/PoolCard'
+import ZoinksPoolCard from './components/PoolCard/ZoinksPoolCard'
+import SnacksPoolCard from './components/PoolCard/SnacksPoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import { getCakeVaultEarnings } from './helpers'
@@ -167,7 +169,7 @@ const Pools: React.FC = () => {
             //     totalStaked =
             //       +formatUnits(manualCakeTotalMinusAutoVault, pool.stakingToken.decimals) * pool.stakingTokenPrice
             //   }
-            // } else 
+            // } else
             if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice) {
               totalStaked =
                 +formatUnits(ethers.BigNumber.from(pool.totalStaked.toString()), pool.stakingToken.decimals) *
@@ -204,6 +206,10 @@ const Pools: React.FC = () => {
       {chosenPools.map((pool) =>
         pool.vaultKey ? (
           <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
+        ) : pool.sousId === 0 ? ( // zoinks pool
+          <ZoinksPoolCard key={pool.sousId} pool={pool} account={account} />
+        ) : pool.sousId === 1 ? ( // snacks pool
+          <SnacksPoolCard key={pool.sousId} pool={pool} account={account} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),

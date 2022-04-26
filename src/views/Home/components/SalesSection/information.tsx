@@ -7,7 +7,8 @@ const TimerLabelWrapper = styled.div`
   order: 3;
   width: 100%;
   color: white;
-  font-size: 20px;
+  font-size: 30px;
+  display: flex;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     order: 1;
@@ -49,15 +50,26 @@ const Informations = () => {
   return (
     <>
       <TimerLabelWrapper>
-        <div>
-          Next Pulse: {timeLeft.hours} hrs {timeLeft.minutes} mins {timeLeft.seconds} secs
+        <div style={{ textAlign: 'right' }}>
+          <div>Next Pulse:&nbsp;</div>
+          <div>Next Pulse Amount:&nbsp;</div>
+          <div>TOTAL LOCKED:&nbsp;</div>
+          <div>TVL:&nbsp;</div>
+          <div>Snacks Price:&nbsp;</div>
+          <div>EthSnacks Price:&nbsp;</div>
+          <div>BtcSnacks Price:&nbsp;</div>
         </div>
-        <div>Next Pulse Amount : $ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</div>
-        <div>TOTAL LOCKED: $ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
-        <div>TVL: $ {totalStakedUSD.toFixed(6)}</div>
-        <div>Snacks Price: $ {snacksPrice.toFixed(6)}</div>
-        <div>EthSnacks Price: $ {ethsnacksPrice.toFixed(6)}</div>
-        <div>BtcSnacks Price: $ {btcsnacksPrice.toFixed(6)}</div>
+        <div>
+          <div>
+            {timeLeft.hours} hrs {timeLeft.minutes} mins {timeLeft.seconds} secs
+          </div>
+          <div>$ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</div>
+          <div>$ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
+          <div>$ {totalStakedUSD.toFixed(6)}</div>
+          <div>$ {snacksPrice.toFixed(6)}</div>
+          <div>$ {ethsnacksPrice.toFixed(6)}</div>
+          <div>$ {btcsnacksPrice.toFixed(6)}</div>
+        </div>
       </TimerLabelWrapper>
     </>
   )

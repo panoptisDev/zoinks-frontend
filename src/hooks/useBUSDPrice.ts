@@ -7,6 +7,7 @@ import { useSnacksBuyAmount, useSnacksBuyBackAmount } from 'hooks/useSnacksTrade
 import { useBtcUSDPrice, useEthUSDPrice } from 'utils/calls/usdPrice'
 import { useSnacksBuyBackInfo, tryParseAmount } from 'state/swap/hooks'
 import { useMemo } from 'react'
+import BigNumber from 'bignumber.js'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 import { PairState, usePairs } from './usePairs'
@@ -129,4 +130,26 @@ export function useSnacksPrice() {
     ethsnacksPrice: parseFloat(ethsnacksPrice?.toExact() ?? '0') * ethusdPrice,
     btcsnacksPrice: parseFloat(btcsnacksPrice?.toExact() ?? '0') * btcusdPrice,
   }
+}
+
+export function useSnacksAmountUSD(amount: BigNumber) {
+  const snacksPrice = useSnacksBuyAmount(new TokenAmount(tokens.snacks, JSBI.BigInt(amount)), tokens.cake)
+  const zoinksAmount = tryParseAmount('1', tokens.cake)
+  const zoinksPrice = useTradeExactIn(zoinksAmount, tokens.busd)
+
+  return parseFloat(snacksPrice?.toExact() ?? '0') * parseFloat(zoinksPrice?.outputAmount?.toExact() ?? '0')
+}
+
+export function useEthSnacksAmountUSD(amount: BigNumber) {
+  const ethsnacksPrice = useSnacksBuyAmount(new TokenAmount(tokens.ethsnacks, JSBI.BigInt(amount)), tokens.weth)
+  const ethusdPrice = useEthUSDPrice()
+
+  return parseFloat(ethsnacksPrice?.toExact() ?? '0') * ethusdPrice
+}
+
+export function useBtcSnacksAmountUSD(amount: BigNumber) {
+  const btcsnacksPrice = useSnacksBuyAmount(new TokenAmount(tokens.btcsnacks, JSBI.BigInt(amount)), tokens.wbtc)
+  const btcusdPrice = useBtcUSDPrice()
+
+  return parseFloat(btcsnacksPrice?.toExact() ?? '0') * btcusdPrice
 }
