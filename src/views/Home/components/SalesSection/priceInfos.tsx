@@ -43,7 +43,7 @@ const PriceInfos = () => {
 
   return (
     <>
-      <Flex flexDirection={['column', null, null, 'row']} justifyContent="center">
+      <Flex flexDirection={['column', null, null, 'row']} justifyContent="center" marginTop="20px">
         <IconCard icon={<div />} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
           <StatCardContent
             headingText="Snacks Price"
