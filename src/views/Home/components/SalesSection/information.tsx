@@ -1,6 +1,7 @@
 import { useSnacksPrice } from 'hooks/useBUSDPrice'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import Timer from '../Timer'
 import { usePulseInfo } from './hooks/usePulseInfo'
 
 const TimerLabelWrapper = styled.div`
@@ -16,18 +17,36 @@ const TimerLabelWrapper = styled.div`
 `
 
 const LabelValue = styled.div`
+  font-size: 24px;
   display: flex;
-  margin-bottom: 5px;
+  justify-content: center;
+  align-items: end;
+`
+const TimerWrapper = styled.div`
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-bottom: 16px;
+  }
+  margin-bottom: 8px;
+  .custom-timer {
+    background: url('/images/decorations/countdownBg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0px 10px 7px;
+    display: inline-flex;
+  }
 `
 
-const LabelDiv = styled.div`
-  width: 50%;
-  text-align: right;
+const InfoDiv = styled.div`
+  padding: 30px;
+  border: 1px white solid;
+  border-radius: 20px;
+  margin-bottom: 20px;
 `
 
-const ValueDiv = styled.div`
+const SplitDiv = styled.div`
+  padding: 20px;
+  text-align: center;
   width: 50%;
-  align-self: end;
 `
 
 const Informations = () => {
@@ -59,41 +78,39 @@ const Informations = () => {
 
   const { nextPulsePartAmount, nextPulseTotalAmount, totalStakedUSD } = usePulseInfo()
 
-  const { snacksPrice, ethsnacksPrice, btcsnacksPrice } = useSnacksPrice()
-
   return (
     <>
       <TimerLabelWrapper>
-        <LabelValue>
-          <LabelDiv>Next Pulse:&nbsp;</LabelDiv>
-          <ValueDiv>
-            {timeLeft.hours} : {timeLeft.minutes} : {timeLeft.seconds}
-          </ValueDiv>
-        </LabelValue>
-        <LabelValue>
-          <LabelDiv>Next Pulse Amount:&nbsp;</LabelDiv>
-          <ValueDiv>$ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</ValueDiv>
-        </LabelValue>
-        <LabelValue>
-          <LabelDiv>TOTAL LOCKED:&nbsp;</LabelDiv>
-          <ValueDiv>$ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</ValueDiv>
-        </LabelValue>
-        <LabelValue>
-          <LabelDiv>TVL:&nbsp;</LabelDiv>
-          <ValueDiv>$ {totalStakedUSD.toFixed(6)}</ValueDiv>
-        </LabelValue>
-        <LabelValue>
-          <LabelDiv>Snacks Price:&nbsp;</LabelDiv>
-          <ValueDiv>$ {snacksPrice.toFixed(6)}</ValueDiv>
-        </LabelValue>
-        <LabelValue>
-          <LabelDiv>EthSnacks Price:&nbsp;</LabelDiv>
-          <ValueDiv>$ {ethsnacksPrice.toFixed(6)}</ValueDiv>
-        </LabelValue>
-        <LabelValue>
-          <LabelDiv>BtcSnacks Price:&nbsp;</LabelDiv>
-          <ValueDiv>$ {btcsnacksPrice.toFixed(6)}</ValueDiv>
-        </LabelValue>
+        <InfoDiv>
+          <LabelValue
+            style={{
+              fontSize: '24px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'end',
+              marginBottom: '30px',
+            }}
+          >
+            Next Pulse in &nbsp;
+            <Timer
+              wrapperClassName="custom-timer"
+              seconds={timeLeft.seconds}
+              minutes={timeLeft.minutes}
+              hours={timeLeft.hours}
+            />
+          </LabelValue>
+          <LabelValue>Next Pulse Amount is $ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</LabelValue>
+        </InfoDiv>
+        <InfoDiv style={{ display: 'flex', justifyContent: 'center' }}>
+          <SplitDiv>
+            <div>TOTAL LOCKED</div>
+            <div>$ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
+          </SplitDiv>
+          <SplitDiv style={{ borderLeft: '1px white solid' }}>
+            <div>TVL</div>
+            <div>$ {totalStakedUSD.toFixed(6)}</div>
+          </SplitDiv>
+        </InfoDiv>
       </TimerLabelWrapper>
     </>
   )

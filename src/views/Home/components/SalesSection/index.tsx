@@ -6,6 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import CompositeImage, { CompositeImageProps } from '../CompositeImage'
 import Informations from './information'
+import PriceInfos from './priceInfos'
 
 export interface SalesSectionProps {
   headingText: string
@@ -73,6 +74,7 @@ const SalesSection: React.FC<SalesSectionProps> = (props) => {
           <Informations />
         </Flex>
       </Flex>
+      <PriceInfos />
     </Flex>
   )
 }
