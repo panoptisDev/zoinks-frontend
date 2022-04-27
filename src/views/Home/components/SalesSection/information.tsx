@@ -7,13 +7,27 @@ const TimerLabelWrapper = styled.div`
   order: 3;
   width: 100%;
   color: white;
-  font-size: 30px;
-  display: flex;
+  font-size: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     order: 1;
-    width: auto;
+    width: 100%;
   }
+`
+
+const LabelValue = styled.div`
+  display: flex;
+  margin-bottom: 5px;
+`
+
+const LabelDiv = styled.div`
+  width: 50%;
+  text-align: right;
+`
+
+const ValueDiv = styled.div`
+  width: 50%;
+  align-self: end;
 `
 
 const Informations = () => {
@@ -50,26 +64,36 @@ const Informations = () => {
   return (
     <>
       <TimerLabelWrapper>
-        <div style={{ textAlign: 'right' }}>
-          <div>Next Pulse:&nbsp;</div>
-          <div>Next Pulse Amount:&nbsp;</div>
-          <div>TOTAL LOCKED:&nbsp;</div>
-          <div>TVL:&nbsp;</div>
-          <div>Snacks Price:&nbsp;</div>
-          <div>EthSnacks Price:&nbsp;</div>
-          <div>BtcSnacks Price:&nbsp;</div>
-        </div>
-        <div>
-          <div>
-            {timeLeft.hours} hrs {timeLeft.minutes} mins {timeLeft.seconds} secs
-          </div>
-          <div>$ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</div>
-          <div>$ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</div>
-          <div>$ {totalStakedUSD.toFixed(6)}</div>
-          <div>$ {snacksPrice.toFixed(6)}</div>
-          <div>$ {ethsnacksPrice.toFixed(6)}</div>
-          <div>$ {btcsnacksPrice.toFixed(6)}</div>
-        </div>
+        <LabelValue>
+          <LabelDiv>Next Pulse:&nbsp;</LabelDiv>
+          <ValueDiv>
+            {timeLeft.hours} : {timeLeft.minutes} : {timeLeft.seconds}
+          </ValueDiv>
+        </LabelValue>
+        <LabelValue>
+          <LabelDiv>Next Pulse Amount:&nbsp;</LabelDiv>
+          <ValueDiv>$ {nextPulsePartAmount?.outputAmount?.toSignificant(6)}</ValueDiv>
+        </LabelValue>
+        <LabelValue>
+          <LabelDiv>TOTAL LOCKED:&nbsp;</LabelDiv>
+          <ValueDiv>$ {nextPulseTotalAmount?.outputAmount?.toSignificant(6)}</ValueDiv>
+        </LabelValue>
+        <LabelValue>
+          <LabelDiv>TVL:&nbsp;</LabelDiv>
+          <ValueDiv>$ {totalStakedUSD.toFixed(6)}</ValueDiv>
+        </LabelValue>
+        <LabelValue>
+          <LabelDiv>Snacks Price:&nbsp;</LabelDiv>
+          <ValueDiv>$ {snacksPrice.toFixed(6)}</ValueDiv>
+        </LabelValue>
+        <LabelValue>
+          <LabelDiv>EthSnacks Price:&nbsp;</LabelDiv>
+          <ValueDiv>$ {ethsnacksPrice.toFixed(6)}</ValueDiv>
+        </LabelValue>
+        <LabelValue>
+          <LabelDiv>BtcSnacks Price:&nbsp;</LabelDiv>
+          <ValueDiv>$ {btcsnacksPrice.toFixed(6)}</ValueDiv>
+        </LabelValue>
       </TimerLabelWrapper>
     </>
   )
