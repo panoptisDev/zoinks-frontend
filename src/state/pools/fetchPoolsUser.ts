@@ -117,6 +117,6 @@ export const fetchUserInfos = async (account) => {
       lastWithdrawDate: new BigNumber(snacksContractResponse.lastWithdrawDate._hex).toJSON(),
     },
   }
-
+  console.log(userInfos)
   return userInfos
 }
