@@ -282,9 +282,9 @@ const Farms: React.FC = () => {
       },
       earned: {
         earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
-        snacksEarnings: getBalanceNumber(new BigNumber(farm.userData.snacksEarnings)),
-        ethSnacksEarnings: getBalanceNumber(new BigNumber(farm.userData.ethSnacksEarnings)),
-        btcSnacksEarnings: getBalanceNumber(new BigNumber(farm.userData.btcSnacksEarnings)),
+        // snacksEarnings: getBalanceNumber(new BigNumber(farm.userData.snacksEarnings)),
+        // ethSnacksEarnings: getBalanceNumber(new BigNumber(farm.userData.ethSnacksEarnings)),
+        // btcSnacksEarnings: getBalanceNumber(new BigNumber(farm.userData.btcSnacksEarnings)),
         // pid: farm.pid,
       },
       liquidity: {

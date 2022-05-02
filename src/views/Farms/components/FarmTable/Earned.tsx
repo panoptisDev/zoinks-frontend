@@ -4,9 +4,9 @@ import { Skeleton } from '@zoinks-swap/uikit'
 
 export interface EarnedProps {
   earnings: number
-  snacksEarnings: number
-  ethSnacksEarnings: number
-  btcSnacksEarnings: number
+  // snacksEarnings: number
+  // ethSnacksEarnings: number
+  // btcSnacksEarnings: number
   // pid: number
 }
 
