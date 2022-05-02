@@ -33,7 +33,7 @@ const pools: SerializedPoolConfig[] = [
     stakingToken: serializedTokens.cake,
     earningToken: serializedTokens.cake,
     contractAddress: {
-      97: '0xb9A3CADC63A65e97849FD140F84Bd1E53EE507db',
+      97: '0x1b4cd0B2b332bd1FAD58F3030403d59751a6CB80',
       56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     },
     poolCategory: PoolCategory.CORE,
@@ -47,7 +47,7 @@ const pools: SerializedPoolConfig[] = [
     stakingToken: serializedTokens.snacks,
     earningToken: serializedTokens.snacks,
     contractAddress: {
-      97: '0x51A7C17B73101eDbbc9Fa52a000a97f5416345a8',
+      97: '0x6502858befE0550eC868c782406d42E20d808858',
       56: '',
     },
     poolCategory: PoolCategory.CORE,

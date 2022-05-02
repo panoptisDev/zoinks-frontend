@@ -51,10 +51,22 @@ import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import useZoinksMint from './hooks/useZoinksMint'
 
-const Label = styled(Text)`
-  font-size: 12px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
+const SwitchIconButton = styled(IconButton)`
+  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
+  .icon-up-down {
+    display: none;
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+    .icon-down {
+      display: none;
+      fill: white;
+    }
+    .icon-up-down {
+      display: block;
+      fill: white;
+    }
+  }
 `
 
 export default function ZoinksMint({ history }: RouteComponentProps) {
@@ -116,7 +128,7 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
         [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
       }
 
-  const { onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
+  const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
   const dependentField: Field = independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT
 
@@ -180,9 +192,6 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
     }
   }
 
-  // errors
-  const [showInverted, setShowInverted] = useState<boolean>(false)
-
   // warnings on slippage
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
 
@@ -194,18 +203,6 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
       approval === ApprovalState.PENDING ||
       (approvalSubmitted && approval === ApprovalState.APPROVED)) &&
     !(priceImpactSeverity > 3 && !isExpertMode)
-
-  const handleConfirmDismiss = useCallback(() => {
-    setSwapState({ tradeToConfirm, attemptingTxn, swapErrorMessage, txHash })
-    // if there was a tx hash, we want to clear the input
-    if (txHash) {
-      onUserInput(Field.INPUT, '')
-    }
-  }, [attemptingTxn, onUserInput, swapErrorMessage, tradeToConfirm, txHash])
-
-  const handleAcceptChanges = useCallback(() => {
-    setSwapState({ tradeToConfirm: trade, swapErrorMessage, txHash, attemptingTxn })
-  }, [attemptingTxn, swapErrorMessage, trade, txHash])
 
   // swap warning state
   const [swapWarningCurrency, setSwapWarningCurrency] = useState(null)
@@ -287,12 +284,10 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                 <Wrapper id="swap-page">
                   <AutoColumn gap="md">
                     <CurrencyInputPanel
-                      label={
-                        independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')
-                      }
+                      label={t('From')}
                       value={formattedAmounts[Field.INPUT]}
                       showMaxButton={!atMaxAmountInput}
-                      currency={tokens.busd}
+                      currency={currencies[Field.INPUT]}
                       onUserInput={handleTypeInput}
                       onMax={handleMaxInput}
                       onCurrencySelect={handleInputSelect}
@@ -301,63 +296,42 @@ export default function ZoinksMint({ history }: RouteComponentProps) {
                       id="swap-currency-input"
                     />
 
+                    <AutoColumn justify="space-between">
+                      <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
+                        <SwitchIconButton
+                          variant="light"
+                          scale="sm"
+                          onClick={() => {
+                            setApprovalSubmitted(false) // reset 2 step UI for approvals
+                            onSwitchTokens()
+                          }}
+                        >
+                          <ArrowDownIcon
+                            className="icon-down"
+                            color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
+                          />
+                          <ArrowUpDownIcon
+                            className="icon-up-down"
+                            color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
+                          />
+                        </SwitchIconButton>
+                      </AutoRow>
+                    </AutoColumn>
                     <CurrencyInputPanel
-                      value={formattedAmounts[Field.OUTPUT]}
+                      value={formattedAmounts[Field.INPUT]}
                       onUserInput={handleTypeOutput}
-                      label={independentField === Field.INPUT && !showWrap && trade ? t('To (estimated)') : t('To')}
+                      label={t('To')}
                       showMaxButton={false}
-                      currency={tokens.cake}
+                      currency={currencies[Field.OUTPUT]}
                       onCurrencySelect={handleOutputSelect}
                       otherCurrency={currencies[Field.INPUT]}
                       disableCurrencySelect={!false}
                       id="swap-currency-output"
                     />
-
-                    {recipient !== null && !showWrap ? (
-                      <>
-                        <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
-                          <ArrowWrapper clickable={false}>
-                            <ArrowDownIcon width="16px" />
-                          </ArrowWrapper>
-                          <Button variant="text" id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
-                            {t('- Remove send')}
-                          </Button>
-                        </AutoRow>
-                        <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
-                      </>
-                    ) : null}
-
-                    {showWrap ? null : (
-                      <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
-                        {Boolean(trade) && (
-                          <RowBetween align="center">
-                            <Label>{t('Price')}</Label>
-                            <TradePrice
-                              price={trade?.executionPrice}
-                              showInverted={showInverted}
-                              setShowInverted={setShowInverted}
-                            />
-                          </RowBetween>
-                        )}
-                        {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
-                          <RowBetween align="center">
-                            <Label>{t('Slippage Tolerance')}</Label>
-                            <Text bold color="primary">
-                              {allowedSlippage / 100}%
-                            </Text>
-                          </RowBetween>
-                        )}
-                      </AutoColumn>
-                    )}
                   </AutoColumn>
                   <Box mt="1rem">
                     {!account ? (
                       <ConnectWalletButton width="100%" />
-                    ) : showWrap ? (
-                      <Button width="100%" disabled={Boolean(wrapInputError)} onClick={onWrap}>
-                        {wrapInputError ??
-                          (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
-                      </Button>
                     ) : showApproveFlow ? (
                       <RowBetween>
                         <Button
