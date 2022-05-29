@@ -1979,7 +1979,7 @@ export const testnetTokens = defineTokens({
   ),
   cake: new Token(
     TESTNET,
-    '0xb0D23CE234333aFc965F55ED5102b4d3AFe4b257',
+    '0x06627D99f574798c3d26dE27a1a8f9C1a476511F',
     18,
     'ZOINKS',
     'ZoinksSwap Token',
@@ -1996,7 +1996,7 @@ export const testnetTokens = defineTokens({
   ),
   snacks: new Token(
     TESTNET,
-    '0x5CB1e08F5bFEd8DD1f532AcDa4C7D560C3B6180D',
+    '0x061DeDE562Fa5e100F7b89dc59A6D7F3d9eF83A5',
     18,
     'SNACKS',
     'ZoinkSwap Token',
@@ -2004,7 +2004,7 @@ export const testnetTokens = defineTokens({
   ),
   ethsnacks: new Token(
     TESTNET,
-    '0xEa38645c698a0B316C29C4A7bFdc02ea8296Be82',
+    '0x0796F05A3a79cB237b4fBc1517b58120F03A672b',
     18,
     'ETHSNACKS',
     'ZoinkSwap Token',
@@ -2012,7 +2012,7 @@ export const testnetTokens = defineTokens({
   ),
   btcsnacks: new Token(
     TESTNET,
-    '0x5f9091e20d9e686CF236A3C9aaD180AC33a2466e',
+    '0xE739991C3e4E183453C753C48a38f6E47524A895',
     18,
     'BTCSNACKS',
     'ZoinkSwap Token',
