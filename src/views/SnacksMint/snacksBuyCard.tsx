@@ -52,7 +52,7 @@ export default function SnacksBuyCard() {
 
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallback(requiredAmount, tokens.snacks.address)
-
+  console.log(approval)
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
 

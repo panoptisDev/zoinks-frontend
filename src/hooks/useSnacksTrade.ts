@@ -31,7 +31,6 @@ export function useSnacksBuyAmount(tokenAmount: TokenAmount, token1: Token): Tok
   const contract = useSnacksTokenContract(inputTokenAddress, false)
 
   const value = new BigNumber(tokenAmount?.toFixed(0)).toString()
-
   const inputs = [value]
   const result = useSingleCallResult(contract, 'calculateBuyAmount', inputs).result
   return useMemo(() => {

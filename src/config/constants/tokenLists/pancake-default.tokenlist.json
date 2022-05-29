@@ -53,7 +53,7 @@
     {
       "name": "ZoinksSwap Token",
       "symbol": "Zoinks",
-      "address": "0x06627D99f574798c3d26dE27a1a8f9C1a476511F",
+      "address": "0xAeD1DeC6F344d70240BCC02514B599eA68f35582",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
@@ -61,7 +61,7 @@
     {
       "name": "ZoinksSwap Token",
       "symbol": "Snacks",
-      "address": "0xBB0d0407145310642aF83883c96BAd8dCDC1E411",
+      "address": "0xf157Ace93e103C52da63C09a975e309893a05Ee5",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
@@ -69,7 +69,7 @@
     {
       "name": "ZoinksSwap Token",
       "symbol": "BtcSnacks",
-      "address": "0x00abe00ef4e2A21B1F64492c46BECb4d29B36779",
+      "address": "0x3721783B82f50cA9ed77d65117930066c57C1cFD",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
@@ -77,7 +77,7 @@
     {
       "name": "ZoinksSwap Token",
       "symbol": "EthSnacks",
-      "address": "0x937A60e7c4bc572B05bd46c1b69a1DC9cC73b0d9",
+      "address": "0xbA0EDe81112Fdd46690FA5C7e014d8aB313679d5",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"

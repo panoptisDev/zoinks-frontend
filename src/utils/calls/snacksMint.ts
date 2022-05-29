@@ -8,7 +8,7 @@ const options = {
 
 export const snacksBuy = async (snacksContract, amount) => {
   const gasPrice = getGasPrice()
-  const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
+  const value = new BigNumber(amount).toString()
 
   const tx = await snacksContract.buy(value, { ...options, gasPrice })
   const receipt = await tx.wait()
@@ -17,7 +17,7 @@ export const snacksBuy = async (snacksContract, amount) => {
 
 export const snacksRedeem = async (snacksContract, amount) => {
   const gasPrice = getGasPrice()
-  const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
+  const value = new BigNumber(amount).toString()
 
   const tx = await snacksContract.redeem(value, { ...options, gasPrice })
   const receipt = await tx.wait()
