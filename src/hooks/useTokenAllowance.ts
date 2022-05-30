@@ -6,9 +6,6 @@ import { useSingleCallResult } from '../state/multicall/hooks'
 
 function useTokenAllowance(token?: Token, owner?: string, spender?: string): TokenAmount | undefined {
   const contract = useTokenContract(token?.address, false)
-  console.log(token?.address)
-  console.log(owner)
-  console.log(spender)
   const inputs = useMemo(() => [owner, spender], [owner, spender])
   const allowance = useSingleCallResult(contract, 'allowance', inputs).result
   console.log(allowance)
