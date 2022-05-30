@@ -2004,7 +2004,7 @@ export const testnetTokens = defineTokens({
   ),
   ethsnacks: new Token(
     TESTNET,
-    '0x68d642195d7347011f2E6564301569D46A10a0c0',
+    '0xbA0EDe81112Fdd46690FA5C7e014d8aB313679d5',
     18,
     'ETHSNACKS',
     'ZoinkSwap Token',
@@ -2012,7 +2012,7 @@ export const testnetTokens = defineTokens({
   ),
   btcsnacks: new Token(
     TESTNET,
-    '0x952eD97b4999AAc4f9cb2e46Ec67Fc37151c1315',
+    '0x3721783B82f50cA9ed77d65117930066c57C1cFD',
     18,
     'BTCSNACKS',
     'ZoinkSwap Token',
