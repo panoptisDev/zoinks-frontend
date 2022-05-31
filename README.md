@@ -1,6 +1,6 @@
 <img src="public/logo.png" alt="Zoinks" height="100px">
 
-# Zoinks Frontend
+# Zoinks Frontend uui
 
 This project contains the main features of the pancake application.
 
